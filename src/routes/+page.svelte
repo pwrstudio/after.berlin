@@ -67,7 +67,7 @@
     margin-left: 1ch;
     /* margin-left: auto;
     margin-right: auto; */
-    font-size: 25px;
+    font-size: 22px;
     line-height: 1.2em;
     margin-bottom: 1.2em;
   }
@@ -78,7 +78,7 @@
 
   h1 {
     font-weight: 200;
-    font-size: 25px;
+    font-size: 22px;
     margin-top: 0;
     margin-bottom: 0;
     display: inline-block;
