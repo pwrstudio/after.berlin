@@ -1,12 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<meta name="viewport" content="width=device-width" />
-		%sveltekit.head%
-	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
-	</body>
+
+<head>
+	<title>after.berlin</title>
+	<meta charset="utf-8" />
+	<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+	<meta name="viewport" content="width=device-width" />
+	%sveltekit.head%
+
+	<style>
+		@import url('/fonts/valentine/stylesheet.css');
+		@import url('/fonts/excellent/stylesheet.css');
+
+		*::selection {
+			background: rgba(160, 160, 160, 0.3);
+		}
+
+		* {
+			box-sizing: border-box;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			-webkit-tap-highlight-color: rgba(160, 160, 160, 0.3);
+			scroll-behavior: smooth;
+		}
+
+		body,
+		html {
+			font-family: "ValentineLLWebTrial";
+			/* font-family: "ExcellentWebTrial"; */
+			font-weight: 200;
+			background: #ededed;
+			/* background: orangered; */
+			overscroll-behavior: none;
+			color: rgb(75, 75, 75);
+			color: olivedrab;
+		}
+
+		pre {
+			font-family: "ValentineLLWebTrial";
+			/* font-family: "ExcellentWebTrial"; */
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	</style>
+</head>
+
+<body data-sveltekit-preload-data="hover">
+	<div style="display: contents">%sveltekit.body%</div>
+</body>
+
 </html>
