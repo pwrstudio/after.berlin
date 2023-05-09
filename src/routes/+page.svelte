@@ -67,7 +67,7 @@
     margin-left: 1ch;
     /* margin-left: auto;
     margin-right: auto; */
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1.2em;
     margin-bottom: 1.2em;
   }
@@ -78,11 +78,12 @@
 
   h1 {
     font-weight: 200;
-    font-size: 22px;
+    font-size: 20px;
     margin-top: 0;
     margin-bottom: 0;
     display: inline-block;
-    background: rgba(160, 160, 160, 0.3);
+    /* background: rgba(160, 160, 160, 1); */
+    background: rgba(158, 154, 140, 1);
     margin-right: auto;
     margin-left: auto;
   }
