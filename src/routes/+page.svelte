@@ -1,90 +1,48 @@
 <script lang="ts">
   import { renderBlockText } from "$lib/modules/sanity"
   import HorizontalRule from "$lib/components/HorizontalRule.svelte"
-  import Ticker from "$lib//components/Ticker.svelte"
+  import Event from "$lib/components/Event.svelte"
   export let data
-  const { about, byline, events } = data
-  const width = 40
-  const text = byline.byline
-
-  function formatDateTime(dateTime: string) {
-    const formattedDateTime = dateTime.substring(0, 10)
-    return formattedDateTime
-  }
-  // console.log("about", about)
-  // console.log("byline", byline)
-  // console.log("events", events)
+  const { frontpage, pages, events } = data
 </script>
 
-<main>
-  <!-- TITLE -->
-  <h1>after</h1>
+<div>{frontpage.byline}</div>
 
-  <!-- BYLINE -->
-  <!-- <Ticker {width} {text} /> -->
+<HorizontalRule />
 
-  <HorizontalRule {width} />
+<!-- ABOUT TEXT -->
+<div>
+  {@html renderBlockText(frontpage.about.content)}
+</div>
 
-  <div>
-    {byline.byline}
+<HorizontalRule />
+
+<!-- EVENTS -->
+<div>
+  {#each events as event}
+    <Event {event} />
+  {/each}
+</div>
+
+<HorizontalRule />
+
+<div>
+  <div class="pages">
+    <ul>
+      {#each pages as page}
+        <li>
+          <a href={page.slug?.current} data-sveltekit-preload-data class="title"
+            >{page.title}
+          </a>
+        </li>
+      {/each}
+    </ul>
   </div>
+</div>
 
-  <HorizontalRule {width} />
+<HorizontalRule />
 
-  <!-- ABOUT TEXT -->
-  <div>
-    {@html renderBlockText(about.about.content)}
-  </div>
-
-  <HorizontalRule {width} />
-
-  <!-- EVENTS -->
-  <div>
-    {#each events as event}
-      <div class="event">
-        <div class="date-time">
-          {formatDateTime(event.dateTime)}
-        </div>
-        <div class="title">
-          <pre>  {event.title}</pre>
-        </div>
-      </div>
-    {/each}
-  </div>
-
-  <HorizontalRule {width} />
-
-  <!-- ADDRESS -->
-  <div>
-    <pre>{about.address}</pre>
-  </div>
-</main>
-
-<style>
-  main {
-    margin-top: 1.2em;
-    width: 41ch;
-    margin-left: 1ch;
-    /* margin-left: auto;
-    margin-right: auto; */
-    font-size: 20px;
-    line-height: 1.2em;
-    margin-bottom: 1.2em;
-  }
-
-  .event {
-    margin-bottom: 0.6em;
-  }
-
-  h1 {
-    font-weight: 200;
-    font-size: 20px;
-    margin-top: 0;
-    margin-bottom: 0;
-    display: inline-block;
-    /* background: rgba(160, 160, 160, 1); */
-    background: rgba(158, 154, 140, 1);
-    margin-right: auto;
-    margin-left: auto;
-  }
-</style>
+<!-- ADDRESS -->
+<div>
+  <pre>{frontpage.address}</pre>
+</div>
