@@ -8,7 +8,7 @@
     {formatDateTime(event.dateTime)}
   </div>
   <a
-    href={"/event/" + event.slug?.current}
+    href={"/events/" + event.slug?.current}
     class="title"
     data-sveltekit-preload-data
     >{event.title}

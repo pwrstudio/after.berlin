@@ -29,6 +29,11 @@
 <div>
   <div class="pages">
     <ul>
+      <li>
+        <a href="/events" class="title" data-sveltekit-preload-data>
+          All events
+        </a>
+      </li>
       {#each pages as page}
         <li>
           <a href={page.slug?.current} data-sveltekit-preload-data class="title"
@@ -46,3 +51,9 @@
 <div>
   <pre>{frontpage.address}</pre>
 </div>
+
+<style lang="scss">
+  .all-events {
+    margin-left: 30ch;
+  }
+</style>
