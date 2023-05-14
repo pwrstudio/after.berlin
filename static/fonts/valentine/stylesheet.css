@@ -8,60 +8,26 @@
  */
 
 /*
- * Legal Disclaimer for Trial Licence licence
+ * Legal Disclaimer for Web licence
  *
- * Trial Licence
+ * Licence to use self-hosted webfonts for displaying dynamic text on specified website domains. Our package includes WOFF and WOFF2 font formats.
  *
- * Trial Web License for evaluation, testing and presentation purposes on internal domains without public access only.
+ * Should the license page views limit be exceeded the license holder will be required to contact Lineto.com for an upgrade.
  * 
- * The font files may not be distributed, published or used on any other domain(s).
+ * It is strictly prohibited to rename the font and to download or use these fonts in any other media. 
  * 
- * Any further use is strictly prohibited.
+ * These Web fonts are licensed exclusively for the use on the following domain(s) and their subdomains:
  *
- * For internal test and presentation use only.
- * For both print use and web / electronic use on internal domains without public access. Licencee may create documents / visuals / web pages etc. for the purpose of evaluation and presentation to clients or other interested parties.
- * Any further use is strictly prohibited. The font files may not be distributed, published or used on any other domain(s).
+ * after.berlin (monthly pageviews: <50K)
  *
  */
 
 /* complete */
 
-@font-face {
-  font-family: "ValentineLLWebTrial";
-  font-style: italic;
-  src: url("ValentineLLWebTrial-Italic.woff") format("woff");
-}
+
 
 @font-face {
-  font-family: "ValentineLLWebTrial";
-  font-weight: 600;
-  src: url("ValentineLLWebTrial-Bold.woff") format("woff");
-}
-
-@font-face {
-  font-family: "ValentineLLWebTrial";
+  font-family: "ValentineLLWeb";
   font-weight: 200;
-  src: url("ValentineLLWebTrial-Light.woff") format("woff");
+  src: url("ValentineLLWeb-Light.woff") format("woff");
 }
-
-@font-face {
-  font-family: "ValentineLLWebTrial";
-  font-weight: 200;
-  font-style: italic;
-  src: url("ValentineLLWebTrial-LightItalic.woff") format("woff");
-}
-
-@font-face {
-  font-family: "ValentineLLWebTrial";
-  font-weight: 400;
-  src: url("ValentineLLWebTrial-Regular.woff") format("woff");
-}
-
-@font-face {
-  font-family: "ValentineLLWebTrial";
-  font-style: italic;
-  font-weight: 600;
-  src: url("ValentineLLWebTrial-BoldItalic.woff") format("woff");
-}
-
-

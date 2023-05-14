@@ -32,7 +32,7 @@
     margin-bottom: 2.4em;
 
     h1 {
-      font-weight: 200;
+      font-weight: var(--font-weight);
       font-size: var(--font-size);
       margin-top: 0;
       margin-bottom: 0;

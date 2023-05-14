@@ -10,14 +10,15 @@
 
 	<style lanbg="scss">
 		@import url('/fonts/valentine/stylesheet.css');
-		@import url('/fonts/excellent/stylesheet.css');
 
 		:root {
 			--color-background: rgb(181, 176, 161);
 			--color-primary: rgb(58, 58, 58);
 			--color-secondary: rgb(147, 143, 131);
 			--color-tertiary: rgb(78, 78, 78);
+			--font-family: "ValentineLLWeb";
 			--font-size: 20px;
+			--font-weight: 200;
 			--border-weight: 2px;
 		}
 
@@ -27,23 +28,23 @@
 
 		* {
 			box-sizing: border-box;
-			-webkit-font-smoothing: antialiased;
-			-moz-osx-font-smoothing: grayscale;
+			/* -webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale; */
 			-webkit-tap-highlight-color: var(--color-secondary);
 			scroll-behavior: smooth;
 		}
 
 		body,
 		html {
-			font-family: "ValentineLLWebTrial";
-			font-weight: 200;
+			font-family: var(--font-family);
+			font-weight: var(--font-weight);
 			background: var(--color-background);
 			overscroll-behavior: none;
 			color: var(--color-primary);
 		}
 
 		pre {
-			font-family: "ValentineLLWebTrial";
+			font-family: var(--font-family);
 			margin-top: 0;
 			margin-bottom: 0;
 		}

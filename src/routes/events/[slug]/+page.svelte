@@ -23,6 +23,6 @@
 <style lang="scss">
   h2 {
     font-size: var(--font-size);
-    font-weight: 200;
+    font-weight: var(--font-weight);
   }
 </style>
