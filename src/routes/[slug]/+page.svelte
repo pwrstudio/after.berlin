@@ -4,6 +4,8 @@
   const { page } = data
 </script>
 
-<div>
-  {@html renderBlockText(page.content.content)}
-</div>
+{#if page.content?.content}
+  <div>
+    {@html renderBlockText(page.content.content)}
+  </div>
+{/if}

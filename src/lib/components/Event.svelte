@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { formatDateTime } from "$lib/modules/date"
+  import { formatDate } from "$lib/modules/date"
   export let event: any
 </script>
 
 <div class="event">
   <div class="date-time">
-    {formatDateTime(event.dateTime)}
+    {formatDate(event.dateTime)}
   </div>
   <a
     href={"/events/" + event.slug?.current}

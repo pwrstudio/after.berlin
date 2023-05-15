@@ -1,6 +1,6 @@
 <script lang="ts">
   import HorizontalRule from "$lib/components/HorizontalRule.svelte"
-  import { formatDateTime } from "$lib/modules/date.js"
+  import { formatDate } from "$lib/modules/date.js"
   import { renderBlockText } from "$lib/modules/sanity"
   export let data
   const { page } = data
@@ -11,14 +11,16 @@
 <HorizontalRule />
 
 <div>
-  {formatDateTime(page.dateTime)}
+  {formatDate(page.dateTime)}
 </div>
 
 <HorizontalRule />
 
-<div>
-  {@html renderBlockText(page.about.content)}
-</div>
+{#if page.about?.content}
+  <div>
+    {@html renderBlockText(page.about.content)}
+  </div>
+{/if}
 
 <style lang="scss">
   h2 {
