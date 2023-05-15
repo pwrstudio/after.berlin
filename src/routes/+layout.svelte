@@ -1,14 +1,5 @@
 <script lang="ts">
-  import { renderBlockText } from "$lib/modules/sanity"
   import HorizontalRule from "$lib/components/HorizontalRule.svelte"
-  import Ticker from "$lib//components/Ticker.svelte"
-  export let data
-  const { frontpage, pages, events } = data
-
-  function formatDateTime(dateTime: string) {
-    const formattedDateTime = dateTime.substring(0, 10)
-    return formattedDateTime
-  }
 </script>
 
 <main>

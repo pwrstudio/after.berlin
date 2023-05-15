@@ -3,12 +3,10 @@ import { loadData } from "$lib/modules/sanity"
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
-    const frontpage = await loadData("*[_id == 'frontpage'][0]", {})
-    const events = await loadData("*[_type == 'event'][0..3] | order(dateTime desc)", {})
-    const pages = await loadData("*[_type == 'page']", {})
+    const frontpage = await loadData("*[_id == 'frontpage'][0] {..., pageLinks[]->{...}}", {})
+    const events = await loadData("*[_type == 'event'][0..3] | order(dateTime asc)", {})
     return {
         frontpage,
-        events,
-        pages
+        events
     };
 }

@@ -1,19 +1,12 @@
 <script lang="ts">
-  import { renderBlockText } from "$lib/modules/sanity"
   import HorizontalRule from "$lib/components/HorizontalRule.svelte"
   import Event from "$lib/components/Event.svelte"
   export let data
-  const { frontpage, pages, events } = data
+  const { frontpage, events } = data
+  console.log(frontpage)
 </script>
 
 <div>{frontpage.byline}</div>
-
-<HorizontalRule />
-
-<!-- ABOUT TEXT -->
-<div>
-  {@html renderBlockText(frontpage.about.content)}
-</div>
 
 <HorizontalRule />
 
@@ -29,16 +22,15 @@
 <div>
   <div class="pages">
     <ul>
-      <li>
-        <a href="/events" class="title" data-sveltekit-preload-data>
-          All events
-        </a>
-      </li>
-      {#each pages as page}
+      {#each frontpage.pageLinks as page}
         <li>
-          <a href={page.slug?.current} data-sveltekit-preload-data class="title"
-            >{page.title}
-          </a>
+          {#if page._type === "eventList"}
+            <a href="/events" data-sveltekit-preload-data>{page.title}</a>
+          {:else}
+            <a href={page.slug?.current} data-sveltekit-preload-data>
+              {page.title}
+            </a>
+          {/if}
         </li>
       {/each}
     </ul>
