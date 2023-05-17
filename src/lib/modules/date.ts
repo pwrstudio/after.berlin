@@ -22,12 +22,15 @@ export function formatDateTime(dateTime: string) {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
+    }).split('/')
+
+    const formattedTime = myDate.toLocaleTimeString('en-US', {
         hour: 'numeric',
         minute: 'numeric',
         hour12: false,
-        timeZone: 'UTC'
-    }).split('/')
+        timeZone: 'CET'
+    });
 
     // DD-MM-YYYY
-    return `${dateArray[1]}-${dateArray[0]}-${dateArray[2]}`;
+    return `${dateArray[1]}-${dateArray[0]}-${dateArray[2]}, ${formattedTime}`;
 }
