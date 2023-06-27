@@ -3,7 +3,6 @@
   import Event from "$lib/components/Event.svelte"
   export let data
   const { frontpage, events } = data
-  console.log(frontpage)
 </script>
 
 <div>{frontpage.byline}</div>
@@ -11,13 +10,15 @@
 <HorizontalRule />
 
 <!-- EVENTS -->
-<div>
-  {#each events as event}
-    <Event {event} />
-  {/each}
-</div>
+{#if events.length > 0}
+  <div>
+    {#each events as event}
+      <Event {event} />
+    {/each}
+  </div>
 
-<HorizontalRule />
+  <HorizontalRule />
+{/if}
 
 <div>
   <div class="pages">
