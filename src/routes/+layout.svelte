@@ -17,7 +17,9 @@
   main {
     margin-top: 1.2em;
     width: 41ch;
+    max-width: calc(90vw);
     margin-left: 1ch;
+    margin-right: 1ch;
     font-size: var(--font-size);
     line-height: 1.2em;
     margin-bottom: 2.4em;
