@@ -4,5 +4,5 @@
   const { music } = data
 </script>
 
-<!-- MUSIC -->
+<!-- MUSIC LIBRARY -->
 <List itemList={music} />
