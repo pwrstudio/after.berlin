@@ -34,6 +34,10 @@
           {/if}
         </li>
       {/each}
+      <!-- MUSIC LIBRARY -->
+      <li>
+        <a href="/library" data-sveltekit-preload-data>library</a>
+      </li>
     </ul>
   </div>
 </div>
