@@ -33,11 +33,9 @@
 
       a {
         background: var(--color-secondary);
-        border-bottom: unset;
 
         &:hover {
           background: unset;
-          border-bottom: var(--border-weight) solid var(--color-secondary);
         }
       }
     }

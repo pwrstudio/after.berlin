@@ -11,12 +11,14 @@
     href={"/events/" + event.slug?.current}
     class="title"
     data-sveltekit-preload-data
-    >{event.title}
+  >
+    {event.title}
   </a>
 </div>
 
 <style lang="scss">
   .event {
+    // text-decoration: underline;
     margin-bottom: 0.6em;
   }
 
