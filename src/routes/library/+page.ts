@@ -7,7 +7,10 @@ export async function load({ params }) {
     currentDateTime.setHours(currentDateTime.getHours() - 2);
 
     const music = await loadData("*[_type == 'music'] | order(date desc)", {})
+    const page = await loadData(`*[_type == 'musicLibrary'][0]`, {})
+
     return {
         music,
+        page
     };
 }

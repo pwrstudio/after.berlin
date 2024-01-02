@@ -12,7 +12,7 @@
 <style lang="scss">
   .header-row {
     display: flex;
-    padding-bottom: 0.5em;
+    padding-bottom: var(--vertical-space);
     border-bottom: 1px dashed var(--color-border);
   }
 </style>

@@ -17,10 +17,13 @@
 			--color-secondary: rgb(147, 143, 131);
 			--color-tertiary: rgb(78, 78, 78);
 			--font-family: "ValentineLLWeb";
-			--font-size: 20px;
+			--font-size: 18px;
 			--font-weight: 200;
 			--border-weight: 2px;
-			--column-width: 41ch;
+			--column-width: 96ch;
+			--vertical-space: 0.6em;
+			--double-vertical-space: 1.2em;
+			--line-height: 1.2em;
 		}
 
 		*::selection {
@@ -42,6 +45,7 @@
 			background: var(--color-background);
 			overscroll-behavior: none;
 			color: var(--color-primary);
+			line-height: var(--line-height);
 		}
 
 		pre {
@@ -75,6 +79,16 @@
 		main p {
 			margin-top: 1.2em;
 			margin-bottom: 1.2em;
+		}
+
+		p,
+		h1,
+		h2 {
+			max-width: 48ch;
+		}
+
+		p:empty {
+			display: none;
 		}
 	</style>
 </head>

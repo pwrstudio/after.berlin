@@ -5,8 +5,6 @@
 </script>
 
 <!-- EVENTS -->
-<div>
-  {#each events as event}
-    <Event {event} />
-  {/each}
-</div>
+{#each events as event}
+  <Event {event} />
+{/each}

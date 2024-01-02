@@ -20,21 +20,19 @@
   }
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<div
-  class="header-cell {ColumnType[columnType].toLowerCase()}"
-  class:sortable
-  on:click={setOrderColumn}
->
-  {title}
-  {#if $orderColumn === columnType}
-    {#if $orderDirection === OrderDirection.Ascending}
-      ↑
-    {:else}
-      ↓
+<div class="header-cell {ColumnType[columnType].toLowerCase()}" class:sortable>
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <span class:active={$orderColumn === columnType} on:click={setOrderColumn}>
+    {title}
+    {#if $orderColumn === columnType}
+      {#if $orderDirection === OrderDirection.Ascending}
+        ↑
+      {:else}
+        ↓
+      {/if}
     {/if}
-  {/if}
+  </span>
 </div>
 
 <style lang="scss">
@@ -43,24 +41,33 @@
   .header-cell {
     text-align: left;
     user-select: none;
-    pointer-events: none;
     color: var(--color-emphasis);
 
     // text-transform: uppercase;
+    span {
+      cursor: pointer;
+
+      &.active {
+        background: var(--color-secondary);
+      }
+
+      &:hover {
+        background: var(--color-secondary);
+      }
+    }
 
     &.title {
       width: 30%;
-      padding-left: 1ch;
 
       @include screen-size("phone") {
-        width: 40%;
+        width: 50%;
       }
     }
 
     &.artist {
       width: 20%;
       @include screen-size("phone") {
-        width: 40%;
+        width: 50%;
       }
     }
 
@@ -72,16 +79,16 @@
     }
 
     &.label {
-      width: 15%;
+      width: 20%;
       @include screen-size("phone") {
         display: none;
       }
     }
 
-    &.catalogue-number {
-      width: 15%;
+    &.cataloguenumber {
+      width: 10%;
       @include screen-size("phone") {
-        width: 20%;
+        display: none;
       }
     }
 

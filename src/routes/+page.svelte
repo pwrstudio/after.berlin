@@ -34,23 +34,23 @@
           {/if}
         </li>
       {/each}
-      <!-- MUSIC LIBRARY -->
-      <li>
-        <a href="/library" data-sveltekit-preload-data>library</a>
-      </li>
     </ul>
   </div>
-</div>
 
-<HorizontalRule />
+  <HorizontalRule />
 
-<!-- ADDRESS -->
-<div>
-  <pre>{frontpage.address}</pre>
+  <!-- ADDRESS -->
+  <div>
+    <pre>{frontpage.address}</pre>
+  </div>
 </div>
 
 <style lang="scss">
   .all-events {
     margin-left: 30ch;
+  }
+
+  li {
+    margin-bottom: var(--vertical-space);
   }
 </style>

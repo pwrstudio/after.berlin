@@ -5,7 +5,5 @@
 </script>
 
 {#if page.content?.content}
-  <div>
-    {@html renderBlockText(page.content.content)}
-  </div>
+  {@html renderBlockText(page.content.content)}
 {/if}

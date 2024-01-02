@@ -19,7 +19,7 @@
 <style lang="scss">
   .event {
     // text-decoration: underline;
-    margin-bottom: 0.6em;
+    margin-bottom: var(--vertical-space);
   }
 
   .title {

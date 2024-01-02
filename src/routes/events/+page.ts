@@ -8,6 +8,6 @@ export async function load({ params }) {
 
     const events = await loadData("*[_type == 'event' && dateTime < $currentTime] | order(dateTime desc)", { currentTime: currentDateTime.toISOString() })
     return {
-        events,
+        events
     };
 }

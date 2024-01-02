@@ -13,34 +13,36 @@
 <div class="search">
   <input
     type="text"
-    placeholder="Filter"
+    placeholder="Search"
     bind:value={term}
     on:input={handleInput}
   />
 
   {#if term}
-    <button on:click={() => searchTerm.set("")}>✕</button>
-    <div class="count">{$orderedList.length}/{$baseList.length} shown</div>
+    <button on:click={() => searchTerm.set("")}>clear</button>
+    <div class="count">
+      <span>{$orderedList.length}/{$baseList.length} shown</span>
+    </div>
   {/if}
 </div>
 
 <style lang="scss">
   .search {
-    margin-top: 2em;
-    margin-bottom: 2em;
+    margin-top: 1.2em;
+    margin-bottom: 2.4em;
     display: flex;
 
     input {
       font-family: var(--font-family);
       font-size: var(--font-size);
-      border: 1px dashed var(--color-border);
+      border: 1px solid var(--color-secondary);
       padding: 1ch;
       margin-right: 0.5em;
       background: var(--white);
       outline: none;
 
       &:focus {
-        border: 1px solid var(--color-accent);
+        border: 1px solid var(--color-primary);
         outline: none;
         color: var(--color-accent);
       }
@@ -49,7 +51,8 @@
     button {
       font-family: var(--font-family);
       font-size: var(--font-size);
-      border: 1px solid var(--color-border);
+      border: 1px solid var(--color-primary);
+      color: var(--color-primary);
       outline: none;
       padding: 0.5em;
       margin-right: 0.5em;
@@ -57,16 +60,21 @@
       background: var(--white);
 
       &:hover {
-        background: var(--color-hover);
+        background: var(--color-secondary);
       }
     }
 
     .count {
       font-family: var(--font-family);
-      border: 1px solid var(--color-border);
+      border: 1px solid var(--color-primary);
       outline: none;
       padding: 0.5em;
       margin-right: 0.5em;
+
+      span {
+        position: relative;
+        top: 0.2em;
+      }
     }
   }
 </style>

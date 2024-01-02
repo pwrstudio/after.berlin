@@ -47,11 +47,15 @@
 
   .row {
     display: flex;
-    border-bottom: 1px dashed var(--color-border);
     text-decoration: none;
     color: inherit;
-    padding-bottom: 1.5em;
-    padding-top: 1.5em;
+    padding-bottom: var(--double-vertical-space);
+    padding-top: var(--double-vertical-space);
+    border-top: 1px solid var(--color-secondary);
+
+    &:last-child {
+      border-bottom: 1px solid var(--color-secondary);
+    }
 
     .cell {
       padding-right: 20px;
@@ -59,17 +63,16 @@
 
       &.title {
         width: 30%;
-        padding-left: 1ch;
 
         @include screen-size("phone") {
-          width: 40%;
+          width: 50%;
         }
       }
 
       &.artist {
         width: 20%;
         @include screen-size("phone") {
-          width: 40%;
+          width: 50%;
         }
       }
 
@@ -81,7 +84,7 @@
       }
 
       &.label {
-        width: 15%;
+        width: 20%;
         @include screen-size("phone") {
           display: none;
         }
@@ -89,9 +92,9 @@
 
       &.catalogue-number {
         padding-right: 0;
-        width: 15%;
+        width: 10%;
         @include screen-size("phone") {
-          width: 20%;
+          display: none;
         }
       }
     }
