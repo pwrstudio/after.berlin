@@ -6,7 +6,7 @@ export default {
         {
             title: "Byline",
             name: "byline",
-            type: "text"
+            type: "contentEditor"
         },
         {
             title: "Page links",
@@ -23,7 +23,7 @@ export default {
         {
             title: "Address",
             name: "address",
-            type: "text"
+            type: "contentEditor"
         }
     ],
 }

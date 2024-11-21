@@ -22,21 +22,3 @@ type Slug = {
     current: string;
     _type: 'slug';
 };
-
-export interface ItemType {
-    _type: 'item';
-    _id: string;
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    type: 'article' | 'link' | 'file';
-    title: string;
-    interpreter: string;
-    composer: string;
-    date: string;
-    label: string;
-    catalogueNumber: string;
-    content: ContentEditor;
-    link: string;
-    slug: Slug;
-}

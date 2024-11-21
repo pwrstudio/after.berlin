@@ -20,20 +20,67 @@ export default {
             validation: (Rule: any) => Rule.required()
         },
         {
-            title: "Media",
-            name: "media",
-            type: "string",
+            title: "Artist",
+            name: "artist",
+            type: "array",
+            of: [{type: "string"}],
             options: {
-                list: [
-                    { title: "Physical", value: "physical" },
-                    { title: "Digital", value: "digital" }
-                ],
-                layout: "radio",
-            },
+              layout: "tags"
+            }
         },
         {
-            title: "Links",
-            name: "links",
+            title: "Label",
+            name: "label",
+            type: "string",
+        },
+        {
+            title: "Format",
+            name: "format",
+            type: "string",
+        },
+        {
+            title: "Country",
+            name: "country",
+            type: "string",
+        },
+        {
+            title: "Released",
+            description: "Year of release",
+            name: "released",
+            type: "string",
+        },
+        {
+            title: "Catalog number",
+            name: "catalogNumber",
+            type: "string",
+        },
+        {
+            title: "Genre",
+            name: "genre",
+            type: "array",
+            of: [{type: "string"}],
+            options: {
+              layout: "tags"
+            }
+        },
+        {
+            title: "Style",
+            name: "style",
+            type: "array",
+            of: [{type: "string"}],
+            options: {
+              layout: "tags"
+            }
+        },
+        {
+            title: "After events",
+            name: "afterEvents",
+            type: "array",
+            of: [{type: "reference", to: [{type: "event"}]}]
+        },
+        {
+            title: "External links",
+            name: "externalLinks",
             type: "array",
             of: [{
                 icon: MdLink,
@@ -54,37 +101,7 @@ export default {
             }],
         },
         {
-            title: "Interpreter",
-            name: "interpreter",
-            type: "string",
-        },
-        {
-            title: "Composer/Interpreter",
-            name: "composer",
-            type: "string",
-        },
-        {
-            title: "Label",
-            name: "label",
-            type: "string",
-        },
-        {
-            title: "Catalogue number",
-            name: "catalogueNumber",
-            type: "string",
-        },
-        {
-            title: "Additional notes",
-            name: "additionalNotes",
-            type: "text",
-        },
-        {
-            title: "Date",
-            name: "date",
-            type: "date",
-        },
-        {
-            title: "Content",
+            title: "Notes",
             name: "content",
             type: "contentEditor"
         },

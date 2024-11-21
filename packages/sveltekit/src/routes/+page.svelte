@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Frontpage, Event } from "@sanity-types"
+  import { renderBlockText } from "$lib/modules/sanity"
   import HorizontalRule from "$lib/components/HorizontalRule.svelte"
   import EventComponent from "$lib/components/EventComponent.svelte"
 
@@ -7,7 +8,7 @@
   const { frontpage, events } = data
 </script>
 
-<div>{frontpage.byline}</div>
+<div>{@html renderBlockText(frontpage.byline?.content ?? [])}</div>
 
 <HorizontalRule />
 
@@ -44,7 +45,7 @@
 
   <!-- ADDRESS -->
   <div>
-    <pre>{frontpage.address}</pre>
+    <pre>{@html renderBlockText(frontpage.address?.content ?? [])}</pre>
   </div>
 </div>
 

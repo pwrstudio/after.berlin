@@ -152,19 +152,27 @@ export type Music = {
   _updatedAt: string
   _rev: string
   title?: string
-  media?: 'physical' | 'digital'
-  links?: Array<{
+  artist?: Array<string>
+  label?: string
+  format?: string
+  country?: string
+  released?: string
+  catalogNumber?: string
+  genre?: Array<string>
+  style?: Array<string>
+  afterEvents?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'event'
+  }>
+  externalLinks?: Array<{
     linkText?: string
     link?: string
     _type: 'link'
     _key: string
   }>
-  interpreter?: string
-  composer?: string
-  label?: string
-  catalogueNumber?: string
-  additionalNotes?: string
-  date?: string
   content?: ContentEditor
   slug?: Slug
 }
@@ -198,6 +206,36 @@ export type Slug = {
   source?: string
 }
 
+export type Frontpage = {
+  _id: string
+  _type: 'frontpage'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  byline?: ContentEditor
+  pageLinks?: Array<
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'page'
+      }
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'eventList'
+      }
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'musicLibrary'
+      }
+  >
+  address?: ContentEditor
+}
+
 export type ContentEditor = {
   _type: 'contentEditor'
   content?: Array<{
@@ -220,36 +258,6 @@ export type ContentEditor = {
   }>
 }
 
-export type Frontpage = {
-  _id: string
-  _type: 'frontpage'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  byline?: string
-  pageLinks?: Array<
-    | {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'page'
-      }
-    | {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'eventList'
-      }
-    | {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'musicLibrary'
-      }
-  >
-  address?: string
-}
-
 export type AllSanitySchemaTypes =
   | SanityImagePaletteSwatch
   | SanityImagePalette
@@ -267,6 +275,6 @@ export type AllSanitySchemaTypes =
   | Event
   | Page
   | Slug
-  | ContentEditor
   | Frontpage
+  | ContentEditor
 export declare const internalGroqTypeReferenceTo: unique symbol

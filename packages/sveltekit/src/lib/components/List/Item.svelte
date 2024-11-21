@@ -1,8 +1,10 @@
 <script lang="ts">
-  import type { ItemType } from "$lib/types"
-  export let item: ItemType
+  import type { Music } from "@sanity-types"
 
-  function getLink(item: ItemType) {
+  export let item: Music | undefined = undefined
+  export let message: string = ""
+
+  function getLink(item: Music) {
     return {
       url: `/library/${item.slug?.current ?? ""}`,
       target: "",
@@ -34,13 +36,16 @@
   let link = getLink(item)
 </script>
 
-<a href={link.url} target={link.target} class="row">
-  <div class="cell title">{item.title}</div>
-  <div class="cell artist">{item.interpreter ?? ""}</div>
-  <div class="cell date">{item.date ?? ""}</div>
-  <div class="cell label">{item.label ?? ""}</div>
-  <div class="cell catalogue-number">{item.catalogueNumber ?? ""}</div>
-</a>
+{#if item}
+  <a href={link.url} target={link.target} class="row">
+    <div class="cell title">{item.title ?? ""}</div>
+    <div class="cell artist">{item.artist ?? ""}</div>
+    <div class="cell label">{item.label ?? ""}</div>
+    <div class="cell catalogue-number">{item.catalogNumber ?? ""}</div>
+  </a>
+{:else}
+  <div class="row">{message}</div>
+{/if}
 
 <style lang="scss">
   @import "../../styles/responsive.scss";
@@ -70,16 +75,9 @@
       }
 
       &.artist {
-        width: 20%;
+        width: 30%;
         @include screen-size("phone") {
           width: 50%;
-        }
-      }
-
-      &.date {
-        width: 20%;
-        @include screen-size("phone") {
-          display: none;
         }
       }
 
@@ -92,7 +90,7 @@
 
       &.catalogue-number {
         padding-right: 0;
-        width: 10%;
+        width: 20%;
         @include screen-size("phone") {
           display: none;
         }

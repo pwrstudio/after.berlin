@@ -7,7 +7,7 @@
 
 <div class="event">
   <div class="date-time">
-    {formatDate(event.dateTime)}
+    {formatDate(event.dateTime ?? "")}
   </div>
   <a
     href={"/events/" + event.slug?.current}
@@ -20,7 +20,6 @@
 
 <style lang="scss">
   .event {
-    // text-decoration: underline;
     margin-bottom: var(--vertical-space);
   }
 

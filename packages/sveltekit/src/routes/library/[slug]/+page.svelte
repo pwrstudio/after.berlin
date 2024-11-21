@@ -1,35 +1,34 @@
 <script lang="ts">
   import type { Music } from "@sanity-types"
+
+  import { renderBlockText } from "$lib/modules/sanity"
+
   import Link from "$lib/components/Link.svelte"
   import HorizontalRule from "$lib/components/HorizontalRule.svelte"
-  import { formatDate } from "$lib/modules/date.js"
-  import { renderBlockText } from "$lib/modules/sanity"
+  import MusicDataItem from "$lib/components/MusicDataItem.svelte"
 
   export let data: { page: Music }
   const { page } = data
+
+  console.log(page)
+  const MusicData = [
+    { label: "Title", value: page.title },
+    { label: "Artist", value: page.artist },
+    { label: "Label", value: page.label },
+    { label: "Format", value: page.format },
+    { label: "Country", value: page.country },
+    { label: "Released", value: page.released },
+    { label: "Catalog Number", value: page.catalogNumber },
+    { label: "Genre", value: page.genre },
+    { label: "Style", value: page.style },
+  ]
+
+  console.log(MusicData)
 </script>
 
-<h2>- Title: {page.title}</h2>
-
-<div>
-  - Interpreter: {page.interpreter}
-</div>
-
-<div>
-  - Composer: {page.composer}
-</div>
-
-<div>
-  - Label: {page.label}
-</div>
-
-<div>
-  - Catalogue Number: {page.catalogueNumber}
-</div>
-
-<div>
-  - Played on: {formatDate(page.date)}
-</div>
+{#each MusicData as { label, value }}
+  <MusicDataItem {label} {value} />
+{/each}
 
 <HorizontalRule />
 

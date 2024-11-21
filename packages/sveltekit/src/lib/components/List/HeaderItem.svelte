@@ -11,7 +11,7 @@
       orderDirection.set(
         $orderDirection === OrderDirection.Ascending
           ? OrderDirection.Descending
-          : OrderDirection.Ascending,
+          : OrderDirection.Ascending
       )
     } else {
       orderColumn.set(columnType)
@@ -43,7 +43,6 @@
     user-select: none;
     color: var(--color-emphasis);
 
-    // text-transform: uppercase;
     span {
       cursor: pointer;
 
@@ -65,16 +64,9 @@
     }
 
     &.artist {
-      width: 20%;
+      width: 30%;
       @include screen-size("phone") {
         width: 50%;
-      }
-    }
-
-    &.date {
-      width: 20%;
-      @include screen-size("phone") {
-        display: none;
       }
     }
 
@@ -86,7 +78,7 @@
     }
 
     &.cataloguenumber {
-      width: 10%;
+      width: 20%;
       @include screen-size("phone") {
         display: none;
       }

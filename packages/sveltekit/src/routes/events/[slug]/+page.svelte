@@ -13,7 +13,7 @@
 <HorizontalRule />
 
 <div>
-  {formatDate(page.dateTime)}
+  {formatDate(page.dateTime ?? "")}
 </div>
 
 <HorizontalRule />

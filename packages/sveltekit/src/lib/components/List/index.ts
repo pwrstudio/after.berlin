@@ -1,5 +1,5 @@
 import { ColumnType, OrderDirection } from "$lib/enums"
-import type { ItemType } from "$lib/types"
+import type { Music } from "@sanity-types"
 import { writable, derived } from "svelte/store";
 
 // - - - - - - -
@@ -14,10 +14,6 @@ export const columns = [
         columnType: ColumnType.Artist,
     },
     {
-        title: "Date",
-        columnType: ColumnType.Date,
-    },
-    {
         title: "Label",
         columnType: ColumnType.Label,
     },
@@ -30,14 +26,13 @@ export const columns = [
 export const SORTABLE_COLUMNS = [
     ColumnType.Title,
     ColumnType.Artist,
-    ColumnType.Date,
     ColumnType.Label,
     ColumnType.CatalogueNumber
 ]
 
 // - - - - - - -
 
-export const baseList = writable([] as ItemType[])
+export const baseList = writable([] as Music[])
 export const orderColumn = writable(ColumnType.Title)
 export const orderDirection = writable(OrderDirection.Descending)
 export const searchTerm = writable("")
@@ -82,8 +77,8 @@ export const orderedList = derived(
                     valueB = b.label || '';
                     break;
                 case ColumnType.CatalogueNumber:
-                    valueA = a.catalogueNumber || '';
-                    valueB = b.catalogueNumber || '';
+                    valueA = a.catalogNumber || '';
+                    valueB = b.catalogNumber || '';
                     break;
                 // Add cases for other sortable columns if needed
                 default:

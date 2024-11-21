@@ -1,7 +1,6 @@
 export enum ColumnType {
     Title,
     Artist,
-    Date,
     Label,
     CatalogueNumber,
 }
