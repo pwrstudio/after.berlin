@@ -22,8 +22,6 @@
     { label: "Genre", value: page.genre },
     { label: "Style", value: page.style },
   ]
-
-  console.log(MusicData)
 </script>
 
 {#each MusicData as { label, value }}
