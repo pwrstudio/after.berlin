@@ -7,6 +7,7 @@
   import EventComponent from "$lib/components/EventComponent.svelte"
   import HorizontalRule from "$lib/components/HorizontalRule.svelte"
   import MusicDataItem from "$lib/components/MusicDataItem.svelte"
+  import Metadata from "$lib/components/Metadata.svelte"
 
   export let data: { page: MusicResolved }
   const { page } = data
@@ -23,6 +24,8 @@
     { label: "Style", value: page.style },
   ]
 </script>
+
+<Metadata title={page.title} />
 
 <!-- META DATA -->
 {#each MusicData as { label, value }}

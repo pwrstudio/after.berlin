@@ -4,10 +4,13 @@
   import List from "$lib/components/List/List.svelte"
   import HorizonalRule from "$lib/components/HorizontalRule.svelte"
   import Search from "$lib/components/List/Search.svelte"
+  import Metadata from "$lib/components/Metadata.svelte"
 
   export let data: { music: Music[]; page: MusicLibrary }
   const { music, page } = data
 </script>
+
+<Metadata title="Library" />
 
 {#if page.content?.content}
   {@html renderBlockText(page.content.content)}

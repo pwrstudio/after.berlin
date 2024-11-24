@@ -4,10 +4,13 @@
   import { renderBlockText } from "$lib/modules/sanity"
   import HorizontalRule from "$lib/components/HorizontalRule.svelte"
   import EventComponent from "$lib/components/EventComponent.svelte"
+  import Metadata from "$lib/components/Metadata.svelte"
 
   export let data: { frontpage: FrontpageResolved; events: Event[] }
   const { frontpage, events } = data
 </script>
+
+<Metadata />
 
 <div>{@html renderBlockText(frontpage.byline?.content ?? [])}</div>
 
