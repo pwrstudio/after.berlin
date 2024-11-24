@@ -17,7 +17,8 @@
       "packages/*"
     ],
     "devDependencies": {
-      "mprocs": "^0.7.1"
+      "mprocs": "^0.7.1",
+      "typescript": "^5.7.2"
     }
   }
   
