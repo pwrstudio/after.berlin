@@ -3,7 +3,6 @@
   import HorizontalRule from "$lib/components/HorizontalRule.svelte"
 
   $: extended = $page.route?.id === "/library"
-  $: console.log($page)
 </script>
 
 <main class:extended>
