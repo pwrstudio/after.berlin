@@ -13,7 +13,7 @@
   {@html renderBlockText(page.content.content)}
 {/if}
 
-<HorizonalRule />
+<HorizonalRule extended />
 
 <Search />
 

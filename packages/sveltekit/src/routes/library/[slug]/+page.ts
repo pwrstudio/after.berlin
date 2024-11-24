@@ -1,8 +1,8 @@
 import { loadData } from "$lib/modules/sanity.js"
-import type { Music } from "@sanity-types";
+import type { MusicResolved } from "$lib/types"
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
-    const page: Music = await loadData("*[_type == 'music' && slug.current == $slug][0]", { slug: params.slug })
+    const page: MusicResolved = await loadData("*[_type == 'music' && slug.current == $slug][0] {..., afterEvents[]->{...}}", { slug: params.slug })
     return { page };
 }

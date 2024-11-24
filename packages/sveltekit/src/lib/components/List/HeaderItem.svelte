@@ -21,9 +21,11 @@
 </script>
 
 <div class="header-cell {ColumnType[columnType].toLowerCase()}" class:sortable>
-  <!-- svelte-ignore a11y-no-static-element-interactions -->
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
-  <span class:active={$orderColumn === columnType} on:click={setOrderColumn}>
+  <button
+    class="header-button"
+    class:active={$orderColumn === columnType}
+    on:click={setOrderColumn}
+  >
     {title}
     {#if $orderColumn === columnType}
       {#if $orderDirection === OrderDirection.Ascending}
@@ -32,7 +34,7 @@
         ↓
       {/if}
     {/if}
-  </span>
+  </button>
 </div>
 
 <style lang="scss">
@@ -43,8 +45,16 @@
     user-select: none;
     color: var(--color-emphasis);
 
-    span {
+    .header-button {
+      background: transparent;
+      border: none;
+      outline: 0;
+      font-size: var(--font-size);
+      font-family: var(--font-family);
+      font-weight: normal;
+      padding: 0;
       cursor: pointer;
+      color: var(--color-primary);
 
       &.active {
         background: var(--color-secondary);
@@ -77,7 +87,7 @@
       }
     }
 
-    &.cataloguenumber {
+    &.genre {
       width: 20%;
       @include screen-size("phone") {
         display: none;

@@ -1,46 +1,63 @@
 <script lang="ts">
-  import type { Music } from "@sanity-types"
+  import type { MusicResolved } from "$lib/types"
 
   import { renderBlockText } from "$lib/modules/sanity"
 
   import Link from "$lib/components/Link.svelte"
+  import EventComponent from "$lib/components/EventComponent.svelte"
   import HorizontalRule from "$lib/components/HorizontalRule.svelte"
   import MusicDataItem from "$lib/components/MusicDataItem.svelte"
 
-  export let data: { page: Music }
+  export let data: { page: MusicResolved }
   const { page } = data
 
-  console.log(page)
   const MusicData = [
     { label: "Title", value: page.title },
     { label: "Artist", value: page.artist },
     { label: "Label", value: page.label },
+    { label: "Catalog Number", value: page.catalogNumber },
+    { label: "Released", value: page.released },
     { label: "Format", value: page.format },
     { label: "Country", value: page.country },
-    { label: "Released", value: page.released },
-    { label: "Catalog Number", value: page.catalogNumber },
     { label: "Genre", value: page.genre },
     { label: "Style", value: page.style },
   ]
 </script>
 
+<!-- META DATA -->
 {#each MusicData as { label, value }}
   <MusicDataItem {label} {value} />
 {/each}
 
-<HorizontalRule />
-
-{#if page.links && page.links.length > 0}
+<!-- EXTERNAL LINKS -->
+{#if page.externalLinks && page.externalLinks.length > 0}
+  <HorizontalRule />
+  <div>- Links</div>
   <div>
-    {#each page.links as link}
+    {#each page.externalLinks as link}
       <Link {link} />
     {/each}
   </div>
 {/if}
 
-<div>
-  {@html renderBlockText(page.content?.content ?? [])}
-</div>
+<!-- EVENTS -->
+{#if page.afterEvents && page.afterEvents.length > 0}
+  <HorizontalRule />
+  <div>- Events</div>
+  <div>
+    {#each page.afterEvents as event}
+      <EventComponent {event} />
+    {/each}
+  </div>
+{/if}
+
+<!-- NOTES -->
+{#if page.content && page.content.content}
+  <HorizontalRule />
+  <div>
+    {@html renderBlockText(page.content.content)}
+  </div>
+{/if}
 
 <style lang="scss">
   h2 {

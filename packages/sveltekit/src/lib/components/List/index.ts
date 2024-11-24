@@ -1,5 +1,6 @@
 import { ColumnType, OrderDirection } from "$lib/enums"
 import type { Music } from "@sanity-types"
+import { arrayToString } from "$lib/modules/utils"
 import { writable, derived } from "svelte/store";
 
 // - - - - - - -
@@ -18,8 +19,8 @@ export const columns = [
         columnType: ColumnType.Label,
     },
     {
-        title: "Cat.#",
-        columnType: ColumnType.CatalogueNumber,
+        title: "Genre",
+        columnType: ColumnType.Genre,
     },
 ]
 
@@ -27,7 +28,7 @@ export const SORTABLE_COLUMNS = [
     ColumnType.Title,
     ColumnType.Artist,
     ColumnType.Label,
-    ColumnType.CatalogueNumber
+    ColumnType.Genre
 ]
 
 // - - - - - - -
@@ -49,10 +50,9 @@ export const orderedList = derived(
             // Check if search term is included in any of the fields
             return (
                 (item.title && item.title.toLowerCase().includes(lowerCaseSearchTerm)) ||
-                (item.interpreter && item.interpreter.toLowerCase().includes(lowerCaseSearchTerm)) ||
-                (item.composer && item.composer.toLowerCase().includes(lowerCaseSearchTerm)) ||
+                (arrayToString(item.artist).toLowerCase().includes(lowerCaseSearchTerm)) ||
                 (item.label && item.label.toLowerCase().includes(lowerCaseSearchTerm)) ||
-                (item.catalogueNumber && item.catalogueNumber.toLowerCase().includes(lowerCaseSearchTerm))
+                (arrayToString(item.genre).toLowerCase().includes(lowerCaseSearchTerm))
             );
         });
 
@@ -65,20 +65,16 @@ export const orderedList = derived(
                     valueB = b.title || '';
                     break;
                 case ColumnType.Artist:
-                    valueA = a.title || '';
-                    valueB = b.title || '';
-                    break;
-                case ColumnType.Date:
-                    valueA = a.date || '';
-                    valueB = b.date || '';
+                    valueA = arrayToString(a.artist) || '';
+                    valueB = arrayToString(b.title) || '';
                     break;
                 case ColumnType.Label:
                     valueA = a.label || '';
                     valueB = b.label || '';
                     break;
-                case ColumnType.CatalogueNumber:
-                    valueA = a.catalogNumber || '';
-                    valueB = b.catalogNumber || '';
+                case ColumnType.Genre:
+                    valueA = arrayToString(a.genre) || '';
+                    valueB = arrayToString(b.genre) || '';
                     break;
                 // Add cases for other sortable columns if needed
                 default:

@@ -1,36 +1,15 @@
 <script lang="ts">
   import type { Music } from "@sanity-types"
+  import { arrayToString } from "$lib/modules/utils"
 
   export let item: Music | undefined = undefined
   export let message: string = ""
 
-  function getLink(item: Music) {
+  function getLink(item: Music | undefined) {
     return {
-      url: `/library/${item.slug?.current ?? ""}`,
+      url: `/library/${item?.slug?.current ?? ""}`,
       target: "",
     }
-
-    // if (item.type === "article") {
-    //   return {
-    //     url: item.slug?.current ?? "",
-    //     target: "",
-    //   }
-    // } else if (item.type === "link") {
-    //   return {
-    //     url: item.link ?? "",
-    //     target: "_blank",
-    //   }
-    // } else if (item.type === "file") {
-    //   return {
-    //     url: item.fileUrl ?? "",
-    //     target: "_blank",
-    //   }
-    // } else {
-    //   return {
-    //     url: "",
-    //     target: "",
-    //   }
-    // }
   }
 
   let link = getLink(item)
@@ -39,9 +18,9 @@
 {#if item}
   <a href={link.url} target={link.target} class="row">
     <div class="cell title">{item.title ?? ""}</div>
-    <div class="cell artist">{item.artist ?? ""}</div>
+    <div class="cell artist">{arrayToString(item.artist)}</div>
     <div class="cell label">{item.label ?? ""}</div>
-    <div class="cell catalogue-number">{item.catalogNumber ?? ""}</div>
+    <div class="cell genre">{arrayToString(item.genre)}</div>
   </a>
 {:else}
   <div class="row">{message}</div>
@@ -88,7 +67,7 @@
         }
       }
 
-      &.catalogue-number {
+      &.genre {
         padding-right: 0;
         width: 20%;
         @include screen-size("phone") {

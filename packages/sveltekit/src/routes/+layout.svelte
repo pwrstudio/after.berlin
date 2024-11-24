@@ -1,14 +1,18 @@
 <script lang="ts">
+  import { page } from "$app/stores"
   import HorizontalRule from "$lib/components/HorizontalRule.svelte"
+
+  $: extended = $page.route?.id === "/library"
+  $: console.log($page)
 </script>
 
-<main>
+<main class:extended>
   <!-- TITLE -->
   <h1>
     <a href="/" data-sveltekit-preload-data>after</a>
   </h1>
 
-  <HorizontalRule />
+  <HorizontalRule {extended} />
 
   <slot />
 </main>
@@ -20,15 +24,21 @@
     margin-right: 1ch;
     font-size: var(--font-size);
     margin-bottom: 4.8em;
+
+    overflow-x: hidden;
     max-width: 90vw;
-    width: 80ch;
+    width: var(--normal-width);
+
+    &.extended {
+      width: var(--extended-width);
+    }
 
     h1 {
       font-weight: var(--font-weight);
       font-size: var(--font-size);
       margin-top: 0;
       margin-bottom: 0;
-      display: inline-block;
+      display: block;
       margin-right: auto;
       margin-left: auto;
 

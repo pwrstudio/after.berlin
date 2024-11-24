@@ -2,7 +2,7 @@ export enum ColumnType {
     Title,
     Artist,
     Label,
-    CatalogueNumber,
+    Genre,
 }
 
 export enum OrderDirection {

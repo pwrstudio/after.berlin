@@ -1,7 +1,10 @@
 <script lang="ts">
   import { onMount } from "svelte"
+
+  export let extended = false
+
   const CHARACTER = "-"
-  let characterCount = 80 // Default value
+  let characterCount = extended ? 80 : 50 // Default value
   let horizontalRule: HTMLElement
 
   function calculateCharacterCount() {

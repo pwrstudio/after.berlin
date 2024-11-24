@@ -20,7 +20,8 @@
 			--font-size: 18px;
 			--font-weight: 200;
 			--border-weight: 2px;
-			--column-width: 96ch;
+			--normal-width: 50ch;
+			--extended-width: 80ch;
 			--vertical-space: 0.6em;
 			--double-vertical-space: 1.2em;
 			--line-height: 1.2em;
@@ -81,10 +82,14 @@
 			margin-bottom: 1.2em;
 		}
 
-		p,
+		/* p,
 		h1,
 		h2 {
 			max-width: 48ch;
+		} */
+
+		h1 {
+			display: block;
 		}
 
 		p:empty {
