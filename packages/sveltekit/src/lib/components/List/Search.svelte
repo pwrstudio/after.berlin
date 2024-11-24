@@ -27,6 +27,8 @@
 </div>
 
 <style lang="scss">
+  @import "../../styles/responsive.scss";
+
   .search {
     margin-top: 1.2em;
     margin-bottom: 2.4em;
@@ -40,11 +42,16 @@
       margin-right: 0.5em;
       background: var(--white);
       outline: none;
+      border-radius: 0;
 
       &:focus {
         border: 1px solid var(--color-primary);
         outline: none;
         color: var(--color-accent);
+      }
+
+      &::placeholder {
+        color: var(--color-primary);
       }
     }
 
@@ -62,6 +69,10 @@
       &:hover {
         background: var(--color-secondary);
       }
+
+      @include screen-size("phone") {
+        display: none;
+      }
     }
 
     .count {
@@ -74,6 +85,10 @@
       span {
         position: relative;
         top: 0.2em;
+      }
+
+      @include screen-size("phone") {
+        display: none;
       }
     }
   }
