@@ -10,7 +10,7 @@
   const { music, page } = data
 </script>
 
-<Metadata title="Library" />
+<Metadata title="library" />
 
 {#if page.content?.content}
   {@html renderBlockText(page.content.content)}
