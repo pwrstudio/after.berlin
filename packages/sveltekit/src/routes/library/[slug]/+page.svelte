@@ -13,6 +13,7 @@
   const { page } = data
 
   const MusicData = [
+    { label: "After Library Number", value: page.afterLibraryNumber },
     { label: "Title", value: page.title },
     { label: "Artist", value: page.artist },
     { label: "Label", value: page.label },

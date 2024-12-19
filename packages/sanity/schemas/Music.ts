@@ -20,6 +20,11 @@ export default {
             validation: (Rule: any) => Rule.required()
         },
         {
+            title: "After Library Number",
+            name: "afterLibraryNumber",
+            type: "string"
+        },
+        {
             title: "Artist",
             name: "artist",
             type: "array",

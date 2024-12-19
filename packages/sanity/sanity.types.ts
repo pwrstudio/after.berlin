@@ -152,6 +152,7 @@ export type Music = {
   _updatedAt: string
   _rev: string
   title?: string
+  afterLibraryNumber?: string
   artist?: Array<string>
   label?: string
   format?: string
