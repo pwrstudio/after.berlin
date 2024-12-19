@@ -7,3 +7,7 @@ export type FrontpageResolved = Omit<Frontpage, "pageLinks"> & {
 export type MusicResolved = Omit<Music, "afterEvents"> & {
     afterEvents: Event[]
 };
+
+export type EventResolved = Event & {
+    relatedMusic: Music[]
+};

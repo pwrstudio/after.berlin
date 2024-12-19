@@ -1,11 +1,12 @@
 <script lang="ts">
-  import type { Event } from "@sanity-types"
   import { formatDate } from "$lib/modules/date.js"
   import { renderBlockText } from "$lib/modules/sanity"
   import HorizontalRule from "$lib/components/HorizontalRule.svelte"
   import Metadata from "$lib/components/Metadata.svelte"
+  import type { EventResolved } from "$lib/types"
+  import MusicComponent from "$lib/components/MusicComponent.svelte"
 
-  export let data: { page: Event }
+  export let data: { page: EventResolved }
   const { page } = data
 </script>
 
@@ -27,9 +28,24 @@
   </div>
 {/if}
 
+<!-- MUSIC -->
+{#if page.relatedMusic && page.relatedMusic.length > 0}
+  <HorizontalRule />
+  <div class="header">- Music</div>
+  <div>
+    {#each page.relatedMusic as music}
+      <MusicComponent {music} />
+    {/each}
+  </div>
+{/if}
+
 <style lang="scss">
   h2 {
     font-size: var(--font-size);
     font-weight: var(--font-weight);
+  }
+
+  .header {
+    margin-bottom: var(--vertical-space);
   }
 </style>
