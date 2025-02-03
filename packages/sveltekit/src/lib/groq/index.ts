@@ -3,7 +3,7 @@ export const queries = {
     singlePage: "*[_type == 'page' && slug.current == $slug][0]",
     // Event
     eventsUpcoming: "*[_type == 'event' && dateTime > $currentTime] | order(dateTime asc)",
-    eventsPast: "*[_type == 'event' && dateTime < $currentTime] | order(dateTime asc)",
+    eventsPast: "*[_type == 'event' && dateTime < $currentTime] | order(dateTime desc)",
     singleEvent: "*[_type == 'event' && slug.current == $slug][0] {..., 'relatedMusic': *[_type=='music' && references(^._id)]{...}}",
     // Music
     music: "*[_type == 'music'] | order(date desc)",

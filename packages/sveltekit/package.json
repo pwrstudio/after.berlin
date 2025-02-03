@@ -12,17 +12,17 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.3.1",
-		"@sveltejs/kit": "^2.12.2",
+		"@sveltejs/kit": "^2.17.1",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
-		"svelte": "^5.14.4",
-		"sass-embedded": "^1.83.0",
-		"svelte-check": "^4.1.1",
-		"vite": "^6.0.4"
+		"svelte": "^5.19.6",
+		"sass-embedded": "^1.83.4",
+		"svelte-check": "^4.1.4",
+		"vite": "^6.0.11"
 	},
 	"type": "module",
 	"dependencies": {
 		"@sanity/block-content-to-html": "^2.0.0",
-		"@sanity/client": "^6.24.1",
+		"@sanity/client": "^6.27.2",
 		"lodash": "^4.17.21"
 	}
 }
