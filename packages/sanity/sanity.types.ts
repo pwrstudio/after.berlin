@@ -151,16 +151,22 @@ export type Music = {
   _createdAt: string
   _updatedAt: string
   _rev: string
+  afterCatalogNumber?: string
   title?: string
-  afterLibraryNumber?: string
   artist?: Array<string>
   label?: string
-  format?: string
-  country?: string
-  released?: string
   catalogNumber?: string
-  genre?: Array<string>
-  style?: Array<string>
+  issueCategory?: 'firstIssue' | 'reissue'
+  firstIssueYear?: string
+  reissueYear?: string
+  firstIssueCountry?: string
+  reissueCountry?: string
+  mastering?: string
+  cover?: string
+  acquisition?: 'gifted' | 'research' | 'publicProgram'
+  tags?: Array<string>
+  mediaType?: string
+  notes?: string
   afterEvents?: Array<{
     _ref: string
     _type: 'reference'
@@ -174,7 +180,6 @@ export type Music = {
     _type: 'link'
     _key: string
   }>
-  content?: ContentEditor
   slug?: Slug
 }
 

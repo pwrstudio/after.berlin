@@ -9,20 +9,19 @@ export default {
     icon: MdMusicNote,
     name: "music",
     type: "document",
-    initialValue: {
-        media: "physical",
-    },
     fields: [
         {
+            title: "After catalog number",
+            name: "afterCatalogNumber",
+            type: "string",
+            // validation: (Rule: any) => Rule.required()
+        },
+        {
             title: "Title",
+            description: "Album / record title",
             name: "title",
             type: "string",
             validation: (Rule: any) => Rule.required()
-        },
-        {
-            title: "After Library Number",
-            name: "afterLibraryNumber",
-            type: "string"
         },
         {
             title: "Artist",
@@ -39,29 +38,70 @@ export default {
             type: "string",
         },
         {
-            title: "Format",
-            name: "format",
-            type: "string",
-        },
-        {
-            title: "Country",
-            name: "country",
-            type: "string",
-        },
-        {
-            title: "Released",
-            description: "Year of release",
-            name: "released",
-            type: "string",
-        },
-        {
             title: "Catalog number",
             name: "catalogNumber",
             type: "string",
         },
         {
-            title: "Genre",
-            name: "genre",
+            title: "First issue / Re-issue",
+            name: "issueCategory",
+            type: "string",
+            options: {
+                list: [
+                    {title: "First issue", value: "firstIssue"},
+                    {title: "Re-issue", value: "reissue"},
+                ],
+                layout: "radio",
+            },
+        },
+        {
+            title: "First issue year",
+            name: "firstIssueYear",
+            type: "string",
+        },
+        {
+            title: "Re-issue year",
+            name: "reissueYear",
+            type: "string",
+        },
+        {
+            title: "First issue Country",
+            name: "firstIssueCountry",
+            type: "string",
+        },
+        {
+            title: "Re-issue Country",
+            name: "reissueCountry",
+            type: "string",
+        },
+        {
+            title: "Mastering",
+            description: "Mastering credits",
+            name: "mastering",
+            type: "string",
+        },
+        {
+            title: "Cover",
+            description: "Cover credits",
+            name: "cover",
+            type: "string"
+        },
+        {
+            title: "Gifted / Research / Public program",
+            name: "acquisition",
+            type: "string",
+            options: {
+                list: [
+                    {title: "Gifted", value: "gifted"},
+                    {title: "Research", value: "research"},
+                    {title: "Public program", value: "publicProgram"},
+                ],
+                layout: "radio",
+            },
+        },
+        {
+            title: "Tags / Genres",
+            name: "tags",
             type: "array",
             of: [{type: "string"}],
             options: {
@@ -69,13 +109,14 @@ export default {
             }
         },
         {
-            title: "Style",
-            name: "style",
-            type: "array",
-            of: [{type: "string"}],
-            options: {
-              layout: "tags"
-            }
+            title: "Media type",
+            name: "mediaType",
+            type: "string", 
+        },
+        {
+            title: "Notes",
+            name: "notes",
+            type: "string"
         },
         {
             title: "After events",
@@ -104,11 +145,6 @@ export default {
                     }
                 ],
             }],
-        },
-        {
-            title: "Notes",
-            name: "content",
-            type: "contentEditor"
         },
         {
             title: "Slug",

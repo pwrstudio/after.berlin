@@ -801,14 +801,14 @@
           "type": "string"
         }
       },
-      "title": {
+      "afterCatalogNumber": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
         },
         "optional": true
       },
-      "afterLibraryNumber": {
+      "title": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
@@ -832,27 +832,6 @@
         },
         "optional": true
       },
-      "format": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      },
-      "country": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      },
-      "released": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      },
       "catalogNumber": {
         "type": "objectAttribute",
         "value": {
@@ -860,7 +839,87 @@
         },
         "optional": true
       },
-      "genre": {
+      "issueCategory": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "firstIssue"
+            },
+            {
+              "type": "string",
+              "value": "reissue"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "firstIssueYear": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "reissueYear": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "firstIssueCountry": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "reissueCountry": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "mastering": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "cover": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "acquisition": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "gifted"
+            },
+            {
+              "type": "string",
+              "value": "research"
+            },
+            {
+              "type": "string",
+              "value": "publicProgram"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "tags": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
@@ -870,13 +929,17 @@
         },
         "optional": true
       },
-      "style": {
+      "mediaType": {
         "type": "objectAttribute",
         "value": {
-          "type": "array",
-          "of": {
-            "type": "string"
-          }
+          "type": "string"
+        },
+        "optional": true
+      },
+      "notes": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
         },
         "optional": true
       },
@@ -965,14 +1028,6 @@
               }
             }
           }
-        },
-        "optional": true
-      },
-      "content": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "inline",
-          "name": "contentEditor"
         },
         "optional": true
       },

@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { MusicResolved } from "$lib/types"
 
-  import { renderBlockText } from "$lib/modules/sanity"
+  // import { renderBlockText } from "$lib/modules/sanity"
 
   import Link from "$lib/components/Link.svelte"
   import EventComponent from "$lib/components/EventComponent.svelte"
@@ -13,16 +13,25 @@
   const { page } = data
 
   const MusicData = [
-    { label: "After Library Number", value: page.afterLibraryNumber },
+    { label: "After Catalog Number", value: page.afterCatalogNumber },
     { label: "Title", value: page.title },
     { label: "Artist", value: page.artist },
     { label: "Label", value: page.label },
     { label: "Catalog Number", value: page.catalogNumber },
-    { label: "Released", value: page.released },
-    { label: "Format", value: page.format },
-    { label: "Country", value: page.country },
-    { label: "Genre", value: page.genre },
-    { label: "Style", value: page.style },
+    {
+      label: "Issue Category",
+      value: page.issueCategory === "firstIssue" ? "First Issue" : "Reissue",
+    },
+    { label: "First Issue Year", value: page.firstIssueYear },
+    { label: "Reissue Year", value: page.reissueYear },
+    { label: "First Issue Country", value: page.firstIssueCountry },
+    { label: "Reissue Country", value: page.reissueCountry },
+    { label: "Mastering", value: page.mastering },
+    { label: "Cover", value: page.cover },
+    { label: "Acquisition", value: page.acquisition },
+    { label: "Tags", value: page.tags },
+    { label: "Media Type", value: page.mediaType },
+    { label: "Notes", value: page.notes },
   ]
 </script>
 
@@ -56,12 +65,12 @@
 {/if}
 
 <!-- NOTES -->
-{#if page.content && page.content.content}
+<!-- {#if page.content && page.content.content}
   <HorizontalRule />
   <div>
     {@html renderBlockText(page.content.content)}
   </div>
-{/if}
+{/if} -->
 
 <style lang="scss">
   h2 {
