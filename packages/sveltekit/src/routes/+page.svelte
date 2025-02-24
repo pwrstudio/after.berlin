@@ -32,7 +32,7 @@
   <div class="pages">
     {#if frontpage.pageLinks}
       <ul>
-        {#each frontpage.pageLinks.filter(page => page._type !== "musicLibrary") as page}
+        {#each frontpage.pageLinks as page}
           <li>
             {#if page._type === "eventList"}
               <a href="/events" data-sveltekit-preload-data>{page.title}</a>

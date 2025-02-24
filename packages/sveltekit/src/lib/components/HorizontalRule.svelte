@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount, tick } from "svelte"
+  import { onMount } from "svelte"
 
   export let extended = false
 
@@ -20,7 +20,7 @@
   }
 
   onMount(async () => {
-    await tick()
+    await new Promise(resolve => setTimeout(resolve, 100))
     calculateCharacterCount()
   })
 </script>
