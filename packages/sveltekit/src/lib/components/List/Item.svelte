@@ -19,8 +19,9 @@
   <a href={link.url} target={link.target} class="row">
     <div class="cell title">{item.title ?? ""}</div>
     <div class="cell artist">{arrayToString(item.artist)}</div>
+    <div class="cell year">{item.firstIssueYear ?? ""}</div>
     <div class="cell label">{item.label ?? ""}</div>
-    <div class="cell genre">{arrayToString(item.genre)}</div>
+    <div class="cell genre">{arrayToString(item.tags)}</div>
   </a>
 {:else}
   <div class="row">{message}</div>
@@ -54,9 +55,16 @@
       }
 
       &.artist {
-        width: 30%;
+        width: 20%;
         @include screen-size("phone") {
           width: 50%;
+        }
+      }
+
+      &.year {
+        width: 10%;
+        @include screen-size("phone") {
+          display: none;
         }
       }
 

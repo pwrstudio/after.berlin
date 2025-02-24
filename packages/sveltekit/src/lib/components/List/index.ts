@@ -15,13 +15,17 @@ export const columns = [
         columnType: ColumnType.Artist,
     },
     {
+        title: "Year",
+        columnType: ColumnType.Year,
+    },
+    {
         title: "Label",
         columnType: ColumnType.Label,
     },
     {
         title: "Genre",
         columnType: ColumnType.Genre,
-    },
+    }
 ]
 
 export const SORTABLE_COLUMNS = [
@@ -52,43 +56,51 @@ export const orderedList = derived(
                 (item.title && item.title.toLowerCase().includes(lowerCaseSearchTerm)) ||
                 (arrayToString(item.artist).toLowerCase().includes(lowerCaseSearchTerm)) ||
                 (item.label && item.label.toLowerCase().includes(lowerCaseSearchTerm)) ||
-                (arrayToString(item.genre).toLowerCase().includes(lowerCaseSearchTerm))
+                (arrayToString(item.tags).toLowerCase().includes(lowerCaseSearchTerm))
             );
         });
 
-        // Sorting
-        filteredList.sort((a, b) => {
-            let valueA, valueB;
-            switch ($orderColumn) {
-                case ColumnType.Title:
-                    valueA = a.title || '';
-                    valueB = b.title || '';
-                    break;
-                case ColumnType.Artist:
-                    valueA = arrayToString(a.artist) || '';
-                    valueB = arrayToString(b.title) || '';
-                    break;
-                case ColumnType.Label:
-                    valueA = a.label || '';
-                    valueB = b.label || '';
-                    break;
-                case ColumnType.Genre:
-                    valueA = arrayToString(a.genre) || '';
-                    valueB = arrayToString(b.genre) || '';
-                    break;
-                // Add cases for other sortable columns if needed
-                default:
-                    valueA = a.title || '';
-                    valueB = b.title || '';
-            }
+    // Sorting
+    filteredList.sort((a, b) => {
+        let valueA, valueB;
+        switch ($orderColumn) {
+            case ColumnType.Title:
+                valueA = a.title || '';
+                valueB = b.title || '';
+                break;
+            case ColumnType.Artist:
+                valueA = arrayToString(a.artist) || '';
+                valueB = arrayToString(b.artist) || '';
+                break;
+            case ColumnType.Year:
+                valueA = Number(a.firstIssueYear) || 0;  // Assuming 'year' is the correct field
+                valueB = Number(b.firstIssueYear) || 0;
+                break;
+            case ColumnType.Label:
+                valueA = a.label || '';
+                valueB = b.label || '';
+                break;
+            case ColumnType.Genre:
+                valueA = arrayToString(a.tags) || '';
+                valueB = arrayToString(b.tags) || '';
+                break;
+            default:
+                valueA = a.title || '';
+                valueB = b.title || '';
+        }
 
-            if ($orderDirection === OrderDirection.Ascending) {
-                return valueA.localeCompare(valueB);
-            } else {
-                return valueB.localeCompare(valueA);
-            }
-        });
+        if ($orderColumn === ColumnType.Year) {
+            // Numeric comparison for Year
+            return $orderDirection === OrderDirection.Ascending ? Number(valueA) - Number(valueB) : Number(valueB) - Number(valueA);
+        } else {
+            // String comparison for other columns
+            return $orderDirection === OrderDirection.Ascending
+                ? String(valueA).localeCompare(String(valueB))
+                : String(valueB).localeCompare(String(valueA));
+        }
+    });
 
         return filteredList;
     }
 );
+

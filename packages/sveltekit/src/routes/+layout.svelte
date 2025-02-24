@@ -18,14 +18,14 @@
 
 <style lang="scss">
   main {
-    margin-top: 1.2em;
-    margin-left: 1ch;
-    margin-right: 1ch;
+    margin-top: 2ch;
+    margin-left: 2ch;
+    margin-right: 2ch;
     font-size: var(--font-size);
-    margin-bottom: 4.8em;
+    margin-bottom: 10ch;
 
     overflow-x: hidden;
-    max-width: 90vw;
+    max-width: calc(100vw - 4ch);
     width: var(--normal-width);
 
     &.extended {

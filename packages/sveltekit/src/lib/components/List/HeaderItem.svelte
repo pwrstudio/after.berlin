@@ -74,9 +74,16 @@
     }
 
     &.artist {
-      width: 30%;
+      width: 20%;
       @include screen-size("phone") {
         width: 50%;
+      }
+    }
+
+    &.year {
+      width: 10%;
+      @include screen-size("phone") {
+        display: none;
       }
     }
 

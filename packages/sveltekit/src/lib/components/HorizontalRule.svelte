@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte"
+  import { onMount, tick } from "svelte"
 
   export let extended = false
 
@@ -19,7 +19,10 @@
     }
   }
 
-  onMount(calculateCharacterCount)
+  onMount(async () => {
+    await tick()
+    calculateCharacterCount()
+  })
 </script>
 
 <svelte:window on:resize={calculateCharacterCount} />
