@@ -2,8 +2,10 @@
   import type { Music } from "@sanity-types"
   import { arrayToString } from "$lib/modules/utils"
 
-  export let item: Music | undefined = undefined
-  export let message: string = ""
+  let {
+    item = undefined,
+    message = "",
+  }: { item?: Music; message?: string } = $props()
 
   function getLink(item: Music | undefined) {
     return {
@@ -12,7 +14,7 @@
     }
   }
 
-  let link = getLink(item)
+  let link = $derived(getLink(item))
 </script>
 
 {#if item}
@@ -28,7 +30,7 @@
 {/if}
 
 <style lang="scss">
-  @import "../../styles/responsive.scss";
+  @use "../../styles/responsive.scss" as *;
 
   .row {
     display: flex;

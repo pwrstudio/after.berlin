@@ -1,10 +1,11 @@
 <script lang="ts">
   import { ColumnType, OrderDirection } from "$lib/enums"
   import { orderColumn, orderDirection, SORTABLE_COLUMNS } from "."
-  export let title: string
-  export let columnType: ColumnType
 
-  const sortable = SORTABLE_COLUMNS.includes(columnType)
+  let { title, columnType }: { title: string; columnType: ColumnType } =
+    $props()
+
+  let sortable = $derived(SORTABLE_COLUMNS.includes(columnType))
 
   const setOrderColumn = () => {
     if ($orderColumn === columnType) {
@@ -24,7 +25,7 @@
   <button
     class="header-button"
     class:active={$orderColumn === columnType}
-    on:click={setOrderColumn}
+    onclick={setOrderColumn}
   >
     {title}
     {#if $orderColumn === columnType}
@@ -38,7 +39,7 @@
 </div>
 
 <style lang="scss">
-  @import "../../styles/responsive.scss";
+  @use "../../styles/responsive.scss" as *;
 
   .header-cell {
     text-align: left;

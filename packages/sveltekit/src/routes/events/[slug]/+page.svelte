@@ -6,8 +6,8 @@
   import type { EventResolved } from "$lib/types"
   import MusicComponent from "$lib/components/MusicComponent.svelte"
 
-  export let data: { page: EventResolved }
-  const { page } = data
+  let { data }: { data: { page: EventResolved } } = $props()
+  let page = $derived(data.page)
 </script>
 
 <Metadata title={page.title} />

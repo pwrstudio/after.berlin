@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Music } from "@sanity-types"
 
-  export let music: Music
+  let { music }: { music: Music } = $props()
 </script>
 
 <div class="music">

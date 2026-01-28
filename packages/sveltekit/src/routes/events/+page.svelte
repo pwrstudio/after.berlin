@@ -3,8 +3,8 @@
   import EventComponent from "$lib/components/EventComponent.svelte"
   import Metadata from "$lib/components/Metadata.svelte"
 
-  export let data: { events: Event[] }
-  const { events } = data
+  let { data }: { data: { events: Event[] } } = $props()
+  let events = $derived(data.events)
 </script>
 
 <Metadata title="before" />

@@ -3,9 +3,12 @@
   import Header from "$lib/components/List/Header.svelte"
   import type { Music } from "@sanity-types"
   import { baseList, orderedList } from "."
-  export let itemList: Music[] = []
 
-  baseList.set(itemList)
+  let { itemList = [] }: { itemList?: Music[] } = $props()
+
+  $effect(() => {
+    baseList.set(itemList)
+  })
 </script>
 
 <div class="list">

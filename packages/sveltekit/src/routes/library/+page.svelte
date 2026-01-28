@@ -6,8 +6,9 @@
   import Search from "$lib/components/List/Search.svelte"
   import Metadata from "$lib/components/Metadata.svelte"
 
-  export let data: { music: Music[]; page: MusicLibrary }
-  const { music, page } = data
+  let { data }: { data: { music: Music[]; page: MusicLibrary } } = $props()
+  let music = $derived(data.music)
+  let page = $derived(data.page)
 </script>
 
 <Metadata title="library" />

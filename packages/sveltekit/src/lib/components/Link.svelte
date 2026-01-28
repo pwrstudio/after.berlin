@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let link: { link?: string; linkText?: string }
+  let { link }: { link: { link?: string; linkText?: string } } = $props()
 </script>
 
 <div class="link">

@@ -3,8 +3,8 @@
   import { renderBlockText } from "$lib/modules/sanity"
   import Metadata from "$lib/components/Metadata.svelte"
 
-  export let data: { page: Page }
-  const { page } = data
+  let { data }: { data: { page: Page } } = $props()
+  let page = $derived(data.page)
 </script>
 
 <Metadata title={page.title} />

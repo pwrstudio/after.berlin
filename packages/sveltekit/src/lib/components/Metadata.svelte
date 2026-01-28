@@ -1,15 +1,12 @@
 <script lang="ts">
-  export let title: string | null = null
+  let { title: titleProp = null }: { title?: string | null } = $props()
 
   const defaultDescription = "community space for audiophile listening"
-
   const defaultImage = "https://after.berlin/logo.jpg"
 
-  $: title = (title ? title + " | " : "") + "after.berlin"
-
-  $: description = defaultDescription
-
-  $: image = defaultImage
+  let title = $derived((titleProp ? titleProp + " | " : "") + "after.berlin")
+  let description = $derived(defaultDescription)
+  let image = $derived(defaultImage)
 </script>
 
 <svelte:head>

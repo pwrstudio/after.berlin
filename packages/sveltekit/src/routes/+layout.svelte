@@ -1,8 +1,11 @@
 <script lang="ts">
   import { page } from "$app/stores"
   import HorizontalRule from "$lib/components/HorizontalRule.svelte"
+  import type { Snippet } from "svelte"
 
-  $: extended = $page.route?.id === "/library"
+  let { children }: { children: Snippet } = $props()
+
+  let extended = $derived($page.route?.id === "/library")
 </script>
 
 <main class:extended>
@@ -13,7 +16,7 @@
 
   <HorizontalRule {extended} />
 
-  <slot />
+  {@render children()}
 </main>
 
 <style lang="scss">

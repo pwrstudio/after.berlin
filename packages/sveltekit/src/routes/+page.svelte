@@ -6,8 +6,10 @@
   import EventComponent from "$lib/components/EventComponent.svelte"
   import Metadata from "$lib/components/Metadata.svelte"
 
-  export let data: { frontpage: FrontpageResolved; events: Event[] }
-  const { frontpage, events } = data
+  let { data }: { data: { frontpage: FrontpageResolved; events: Event[] } } =
+    $props()
+  let frontpage = $derived(data.frontpage)
+  let events = $derived(data.events)
 </script>
 
 <Metadata />
@@ -56,10 +58,6 @@
 </div>
 
 <style lang="scss">
-  .all-events {
-    margin-left: 30ch;
-  }
-
   li {
     margin-bottom: var(--vertical-space);
   }

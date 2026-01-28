@@ -2,7 +2,7 @@
   import type { Event } from "@sanity-types"
   import { formatDate } from "$lib/modules/date"
 
-  export let event: Event
+  let { event }: { event: Event } = $props()
 </script>
 
 <div class="event">

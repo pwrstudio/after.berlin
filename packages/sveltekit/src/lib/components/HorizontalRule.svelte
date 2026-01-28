@@ -1,11 +1,13 @@
 <script lang="ts">
-  import { onMount } from "svelte"
-
-  export let extended = false
+  let { extended = false }: { extended?: boolean } = $props()
 
   const CHARACTER = "-"
-  let characterCount = extended ? 80 : 50 // Default value
-  let horizontalRule: HTMLElement
+  let characterCount = $state(50)
+
+  $effect(() => {
+    characterCount = extended ? 80 : 50
+  })
+  let horizontalRule: HTMLElement | undefined = $state()
 
   function calculateCharacterCount() {
     if (horizontalRule) {
@@ -19,13 +21,15 @@
     }
   }
 
-  onMount(async () => {
-    await new Promise(resolve => setTimeout(resolve, 100))
-    calculateCharacterCount()
+  $effect(() => {
+    const timeout = setTimeout(() => {
+      calculateCharacterCount()
+    }, 100)
+    return () => clearTimeout(timeout)
   })
 </script>
 
-<svelte:window on:resize={calculateCharacterCount} />
+<svelte:window onresize={calculateCharacterCount} />
 
 <div bind:this={horizontalRule} class="horizontal-rule">
   {#each Array(characterCount) as _}

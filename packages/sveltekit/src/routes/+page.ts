@@ -2,9 +2,9 @@ import { loadData } from "$lib/modules/sanity";
 import type { Event } from "@sanity-types";
 import type { FrontpageResolved } from "$lib/types";
 import { queries } from "$lib/groq";
+import type { PageLoad } from "./$types";
 
-/** @type {import('./$types').PageLoad} */
-export async function load({ params }) {
+export async function load({ params }: Parameters<PageLoad>[0]) {
   // To include events that started less than 2 hours ago
   const currentDateTime = new Date();
   currentDateTime.setHours(currentDateTime.getHours() - 2);

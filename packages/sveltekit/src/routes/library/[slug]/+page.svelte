@@ -9,10 +9,10 @@
   import MusicDataItem from "$lib/components/MusicDataItem.svelte"
   import Metadata from "$lib/components/Metadata.svelte"
 
-  export let data: { page: MusicResolved }
-  const { page } = data
+  let { data }: { data: { page: MusicResolved } } = $props()
+  let page = $derived(data.page)
 
-  const MusicData = [
+  let MusicData = $derived([
     { label: "After Catalog Number", value: page.afterCatalogNumber },
     { label: "Title", value: page.title },
     { label: "Artist", value: page.artist },
@@ -32,7 +32,7 @@
     { label: "Tags", value: page.tags },
     { label: "Media Type", value: page.mediaType },
     { label: "Notes", value: page.notes },
-  ]
+  ])
 </script>
 
 <Metadata title={page.title} />
@@ -73,12 +73,6 @@
 {/if} -->
 
 <style lang="scss">
-  h2 {
-    font-size: var(--font-size);
-    font-weight: var(--font-weight);
-    margin-bottom: var(--vertical-space);
-  }
-
   div {
     margin-bottom: var(--vertical-space);
   }

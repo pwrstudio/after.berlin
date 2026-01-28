@@ -1,9 +1,11 @@
 <script lang="ts">
   import { searchTerm, baseList, orderedList } from "."
 
-  let term = ""
+  let term = $state($searchTerm)
 
-  $: term = $searchTerm
+  $effect(() => {
+    term = $searchTerm
+  })
 
   const handleInput = () => {
     searchTerm.set(term)
@@ -15,11 +17,11 @@
     type="text"
     placeholder="Search"
     bind:value={term}
-    on:input={handleInput}
+    oninput={handleInput}
   />
 
   {#if term}
-    <button on:click={() => searchTerm.set("")}>clear</button>
+    <button onclick={() => searchTerm.set("")}>clear</button>
     <div class="count">
       <span>{$orderedList.length}/{$baseList.length} shown</span>
     </div>
@@ -27,7 +29,7 @@
 </div>
 
 <style lang="scss">
-  @import "../../styles/responsive.scss";
+  @use "../../styles/responsive.scss" as *;
 
   .search {
     margin-top: 1.2em;

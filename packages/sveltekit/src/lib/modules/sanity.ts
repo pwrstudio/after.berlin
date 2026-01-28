@@ -6,8 +6,15 @@
 // * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 import sanityClient from "@sanity/client";
+// @ts-expect-error - no type definitions available
 import blocksToHtml from "@sanity/block-content-to-html";
+// @ts-expect-error - using lodash submodule import
 import get from "lodash/get.js";
+
+interface PortableTextBlock {
+  _type: string;
+  children?: { text?: string }[];
+}
 
 // const SANITY_PROJECT_ID = import.meta.env.VITE_SANITY_ID
 const SANITY_PROJECT_ID = "4lya2jpj";
@@ -21,7 +28,13 @@ export const client = sanityClient({
 
 const h = blocksToHtml.h;
 
-export const renderBlockText = (text) =>
+interface BlockProps {
+  mark: { href: string };
+  children: unknown;
+  node: { style?: string };
+}
+
+export const renderBlockText = (text: PortableTextBlock[]) =>
   blocksToHtml({
     blocks: text,
     serializers: serializers,
@@ -29,29 +42,31 @@ export const renderBlockText = (text) =>
     dataset: "production",
   });
 
-export const toPlainText = (blocks = []) => {
+export const toPlainText = (blocks: PortableTextBlock[] = []) => {
   return blocks
     .map((block) => {
-      if (block._type !== "block" || !block.children) {
+      if (block._type !== "block" || !("children" in block)) {
         return "";
       }
-      return block.children.map((child) => child.text).join("");
+      return (block.children as { text?: string }[])
+        .map((child) => child.text)
+        .join("");
     })
     .join("\n\n");
 };
 
 const serializers = {
   marks: {
-    link: (props) => {
+    link: (props: BlockProps) => {
       const external = get(props, "mark.href", "").includes("http");
-      let linkOptions = external
+      const linkOptions = external
         ? { target: "_blank", rel: "noreferrer", href: props.mark.href }
         : { href: props.mark.href };
       return h("a", linkOptions, props.children);
     },
   },
   types: {
-    block: (props) => {
+    block: (props: BlockProps) => {
       const style = props.node.style || "normal";
       if (style === "blockquote") return h("blockquote", {}, props.children);
       if (style === "h2") return h("h2", {}, props.children);
@@ -61,14 +76,17 @@ const serializers = {
   },
 };
 
-export const loadData = async (query, params) => {
+export const loadData = async <T>(
+  query: string,
+  params: Record<string, unknown>,
+): Promise<T> => {
   try {
     const res = await client.fetch(query, params);
     if (res === null) {
-      return Promise.reject(new Error(404));
+      return Promise.reject(new Error("404"));
     }
     return res;
   } catch (err) {
-    return Promise.reject(new Error(404));
+    return Promise.reject(new Error("404"));
   }
 };

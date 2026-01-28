@@ -1,7 +1,8 @@
 <script lang="ts">
   import { arrayToString } from "$lib/modules/utils"
-  export let label: string
-  export let value: string | string[] | undefined
+
+  let { label, value }: { label: string; value: string | string[] | undefined } =
+    $props()
 </script>
 
 {#if label && value}
