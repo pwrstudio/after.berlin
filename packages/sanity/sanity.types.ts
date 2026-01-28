@@ -13,6 +13,152 @@
  */
 
 // Source: schema.json
+export type EventList = {
+  _id: string
+  _type: 'eventList'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title: string
+}
+
+export type ContentEditor = {
+  _type: 'contentEditor'
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+}
+
+export type MusicLibrary = {
+  _id: string
+  _type: 'musicLibrary'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title: string
+  content?: ContentEditor
+  slug: Slug
+}
+
+export type Slug = {
+  _type: 'slug'
+  current: string
+  source?: string
+}
+
+export type EventReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'event'
+}
+
+export type Music = {
+  _id: string
+  _type: 'music'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  afterCatalogNumber?: string
+  title: string
+  artist?: Array<string>
+  label?: string
+  catalogNumber?: string
+  issueCategory?: 'firstIssue' | 'reissue'
+  firstIssueYear?: string
+  reissueYear?: string
+  firstIssueCountry?: string
+  reissueCountry?: string
+  mastering?: string
+  cover?: string
+  acquisition?: 'gifted' | 'research' | 'publicProgram'
+  tags?: Array<string>
+  mediaType?: string
+  notes?: string
+  afterEvents?: Array<
+    {
+      _key: string
+    } & EventReference
+  >
+  externalLinks?: Array<{
+    linkText?: string
+    link?: string
+    _type: 'link'
+    _key: string
+  }>
+  slug: Slug
+}
+
+export type Event = {
+  _id: string
+  _type: 'event'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title: string
+  dateTime: string
+  about?: ContentEditor
+  slug: Slug
+}
+
+export type Page = {
+  _id: string
+  _type: 'page'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title: string
+  content?: ContentEditor
+  slug: Slug
+}
+
+export type PageReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'page'
+}
+
+export type EventListReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'eventList'
+}
+
+export type MusicLibraryReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'musicLibrary'
+}
+
+export type Frontpage = {
+  _id: string
+  _type: 'frontpage'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  byline?: ContentEditor
+  pageLinks?: Array<PageReference | EventListReference | MusicLibraryReference>
+  address?: ContentEditor
+}
+
 export type SanityImagePaletteSwatch = {
   _type: 'sanity.imagePaletteSwatch'
   background?: string
@@ -34,25 +180,37 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
   _type: 'sanity.imageDimensions'
-  height?: number
-  width?: number
-  aspectRatio?: number
+  height: number
+  width: number
+  aspectRatio: number
+}
+
+export type SanityImageMetadata = {
+  _type: 'sanity.imageMetadata'
+  location?: Geopoint
+  dimensions?: SanityImageDimensions
+  palette?: SanityImagePalette
+  lqip?: string
+  blurHash?: string
+  thumbHash?: string
+  hasAlpha?: boolean
+  isOpaque?: boolean
 }
 
 export type SanityImageHotspot = {
   _type: 'sanity.imageHotspot'
-  x?: number
-  y?: number
-  height?: number
-  width?: number
+  x: number
+  y: number
+  height: number
+  width: number
 }
 
 export type SanityImageCrop = {
   _type: 'sanity.imageCrop'
-  top?: number
-  bottom?: number
-  left?: number
-  right?: number
+  top: number
+  bottom: number
+  left: number
+  right: number
 }
 
 export type SanityFileAsset = {
@@ -75,6 +233,13 @@ export type SanityFileAsset = {
   path?: string
   url?: string
   source?: SanityAssetSourceData
+}
+
+export type SanityAssetSourceData = {
+  _type: 'sanity.assetSourceData'
+  name?: string
+  id?: string
+  url?: string
 }
 
 export type SanityImageAsset = {
@@ -100,17 +265,6 @@ export type SanityImageAsset = {
   source?: SanityAssetSourceData
 }
 
-export type SanityImageMetadata = {
-  _type: 'sanity.imageMetadata'
-  location?: Geopoint
-  dimensions?: SanityImageDimensions
-  palette?: SanityImagePalette
-  lqip?: string
-  blurHash?: string
-  hasAlpha?: boolean
-  isOpaque?: boolean
-}
-
 export type Geopoint = {
   _type: 'geopoint'
   lat?: number
@@ -118,169 +272,27 @@ export type Geopoint = {
   alt?: number
 }
 
-export type SanityAssetSourceData = {
-  _type: 'sanity.assetSourceData'
-  name?: string
-  id?: string
-  url?: string
-}
-
-export type EventList = {
-  _id: string
-  _type: 'eventList'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-}
-
-export type MusicLibrary = {
-  _id: string
-  _type: 'musicLibrary'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  content?: ContentEditor
-  slug?: Slug
-}
-
-export type Music = {
-  _id: string
-  _type: 'music'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  afterCatalogNumber?: string
-  title?: string
-  artist?: Array<string>
-  label?: string
-  catalogNumber?: string
-  issueCategory?: 'firstIssue' | 'reissue'
-  firstIssueYear?: string
-  reissueYear?: string
-  firstIssueCountry?: string
-  reissueCountry?: string
-  mastering?: string
-  cover?: string
-  acquisition?: 'gifted' | 'research' | 'publicProgram'
-  tags?: Array<string>
-  mediaType?: string
-  notes?: string
-  afterEvents?: Array<{
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    _key: string
-    [internalGroqTypeReferenceTo]?: 'event'
-  }>
-  externalLinks?: Array<{
-    linkText?: string
-    link?: string
-    _type: 'link'
-    _key: string
-  }>
-  slug?: Slug
-}
-
-export type Event = {
-  _id: string
-  _type: 'event'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  dateTime?: string
-  about?: ContentEditor
-  slug?: Slug
-}
-
-export type Page = {
-  _id: string
-  _type: 'page'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  content?: ContentEditor
-  slug?: Slug
-}
-
-export type Slug = {
-  _type: 'slug'
-  current?: string
-  source?: string
-}
-
-export type Frontpage = {
-  _id: string
-  _type: 'frontpage'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  byline?: ContentEditor
-  pageLinks?: Array<
-    | {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'page'
-      }
-    | {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'eventList'
-      }
-    | {
-        _ref: string
-        _type: 'reference'
-        _weak?: boolean
-        [internalGroqTypeReferenceTo]?: 'musicLibrary'
-      }
-  >
-  address?: ContentEditor
-}
-
-export type ContentEditor = {
-  _type: 'contentEditor'
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
-}
-
 export type AllSanitySchemaTypes =
-  | SanityImagePaletteSwatch
-  | SanityImagePalette
-  | SanityImageDimensions
-  | SanityImageHotspot
-  | SanityImageCrop
-  | SanityFileAsset
-  | SanityImageAsset
-  | SanityImageMetadata
-  | Geopoint
-  | SanityAssetSourceData
   | EventList
+  | ContentEditor
   | MusicLibrary
+  | Slug
+  | EventReference
   | Music
   | Event
   | Page
-  | Slug
+  | PageReference
+  | EventListReference
+  | MusicLibraryReference
   | Frontpage
-  | ContentEditor
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityImageMetadata
+  | SanityImageHotspot
+  | SanityImageCrop
+  | SanityFileAsset
+  | SanityAssetSourceData
+  | SanityImageAsset
+  | Geopoint
 export declare const internalGroqTypeReferenceTo: unique symbol
