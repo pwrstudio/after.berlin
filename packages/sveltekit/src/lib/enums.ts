@@ -1,12 +1,12 @@
 export enum ColumnType {
-    Title,
-    Artist,
-    Year,
-    Label,
-    Genre,
+  Title,
+  Artist,
+  Year,
+  Label,
+  Genre,
 }
 
 export enum OrderDirection {
-    Ascending,
-    Descending,
+  Ascending,
+  Descending,
 }

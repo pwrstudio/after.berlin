@@ -1,18 +1,18 @@
 $breakpoints: (
   "phone-small": (
-    max-width: 400px
+    max-width: 400px,
   ),
   "phone": (
-    max-width: 800px
+    max-width: 800px,
   ),
   "small": (
-    max-width: 900px
+    max-width: 900px,
   ),
   "large": (
-    max-width: 1600px
+    max-width: 1600px,
   ),
   "short": (
-    max-height: 700px
+    max-height: 700px,
   ),
 );
 
@@ -23,7 +23,11 @@ $breakpoints: (
 @mixin screen-size($breakpoint) {
   $raw-query: map-get($breakpoints, $breakpoint);
   @if $raw-query {
-    $query: if(type-of($raw-query) == "string", unquote($raw-query), inspect($raw-query));
+    $query: if(
+      type-of($raw-query) == "string",
+      unquote($raw-query),
+      inspect($raw-query)
+    );
     @media #{$query} {
       @content;
     }

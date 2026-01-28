@@ -1,111 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <title>after.berlin</title>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width" />
+    %sveltekit.head%
 
-<head>
-	<title>after.berlin</title>
-	<meta charset="utf-8" />
-	<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-	<meta name="viewport" content="width=device-width" />
-	%sveltekit.head%
+    <style lanbg="scss">
+      @import url("/fonts/valentine/stylesheet.css");
 
-	<style lanbg="scss">
-		@import url('/fonts/valentine/stylesheet.css');
+      :root {
+        --color-background: rgb(181, 176, 161);
+        --color-primary: rgb(58, 58, 58);
+        --color-secondary: rgb(147, 143, 131);
+        --color-tertiary: rgb(78, 78, 78);
+        --font-family: "ValentineLLWeb";
+        --font-size: 18px;
+        --font-weight: 200;
+        --border-weight: 2px;
+        --normal-width: 50ch;
+        --extended-width: 100%;
+        --vertical-space: 0.6em;
+        --double-vertical-space: 1.2em;
+        --line-height: 1.2em;
+      }
 
-		:root {
-			--color-background: rgb(181, 176, 161);
-			--color-primary: rgb(58, 58, 58);
-			--color-secondary: rgb(147, 143, 131);
-			--color-tertiary: rgb(78, 78, 78);
-			--font-family: "ValentineLLWeb";
-			--font-size: 18px;
-			--font-weight: 200;
-			--border-weight: 2px;
-			--normal-width: 50ch;
-			--extended-width: 100%;
-			--vertical-space: 0.6em;
-			--double-vertical-space: 1.2em;
-			--line-height: 1.2em;
-		}
+      *::selection {
+        background: var(--color-secondary);
+      }
 
-		*::selection {
-			background: var(--color-secondary);
-		}
-
-		* {
-			box-sizing: border-box;
-			/* -webkit-font-smoothing: antialiased;
+      * {
+        box-sizing: border-box;
+        /* -webkit-font-smoothing: antialiased;
 			-moz-osx-font-smoothing: grayscale; */
-			-webkit-tap-highlight-color: var(--color-secondary);
-			scroll-behavior: smooth;
-		}
+        -webkit-tap-highlight-color: var(--color-secondary);
+        scroll-behavior: smooth;
+      }
 
-		body,
-		html {
-			margin: 0;
-			padding: 0;
-			font-family: var(--font-family);
-			font-weight: var(--font-weight);
-			background: var(--color-background);
-			/* overscroll-behavior: none; */
-			color: var(--color-primary);
-			line-height: var(--line-height);
-		}
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        font-family: var(--font-family);
+        font-weight: var(--font-weight);
+        background: var(--color-background);
+        /* overscroll-behavior: none; */
+        color: var(--color-primary);
+        line-height: var(--line-height);
+      }
 
-		pre {
-			font-family: var(--font-family);
-			margin-top: 0;
-			margin-bottom: 0;
-		}
+      pre {
+        font-family: var(--font-family);
+        margin-top: 0;
+        margin-bottom: 0;
+      }
 
-		a {
-			color: inherit;
-			text-decoration: underline;
-			text-decoration-color: var(--color-secondary);
+      a {
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-color: var(--color-secondary);
 
-			&:hover {
-				background: var(--color-secondary);
-			}
-		}
+        &:hover {
+          background: var(--color-secondary);
+        }
+      }
 
-		ul {
-			list-style-type: none;
-			margin-left: 0;
-			padding-left: 0;
-		}
+      ul {
+        list-style-type: none;
+        margin-left: 0;
+        padding-left: 0;
+      }
 
-		li:before {
-			content: "-";
-			font-size: var(--font-size);
-			margin-right: 1ch;
-		}
+      li:before {
+        content: "-";
+        font-size: var(--font-size);
+        margin-right: 1ch;
+      }
 
-		main p {
-			margin-top: 1.2em;
-			margin-bottom: 1.2em;
-		}
+      main p {
+        margin-top: 1.2em;
+        margin-bottom: 1.2em;
+      }
 
-		/* p,
+      /* p,
 		h1,
 		h2 {
 			max-width: 48ch;
 		} */
 
-		h1 {
-			display: block;
-		}
+      h1 {
+        display: block;
+      }
 
-		p:empty {
-			display: none;
-		}
+      p:empty {
+        display: none;
+      }
 
-		p {
-			max-width: 80ch;
-		}
-	</style>
-</head>
+      p {
+        max-width: 80ch;
+      }
+    </style>
+  </head>
 
-<body data-sveltekit-preload-data="hover">
-	<div style="display: contents">%sveltekit.body%</div>
-</body>
-
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
 </html>
