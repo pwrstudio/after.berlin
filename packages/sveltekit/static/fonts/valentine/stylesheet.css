@@ -27,5 +27,51 @@
 @font-face {
   font-family: "ValentineLLWeb";
   font-weight: 200;
+  font-style: normal;
   src: url("ValentineLLWeb-Light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "ValentineLLWeb";
+  font-weight: 200;
+  font-style: italic;
+  src:
+    url("ValentineLLWeb-LightItalic.woff2") format("woff2"),
+    url("ValentineLLWeb-LightItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "ValentineLLWeb";
+  font-weight: 400;
+  font-style: normal;
+  src:
+    url("ValentineLLWeb-Regular.woff2") format("woff2"),
+    url("ValentineLLWeb-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "ValentineLLWeb";
+  font-weight: 400;
+  font-style: italic;
+  src:
+    url("ValentineLLWeb-Italic.woff2") format("woff2"),
+    url("ValentineLLWeb-Italic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "ValentineLLWeb";
+  font-weight: 700;
+  font-style: normal;
+  src:
+    url("ValentineLLWeb-Bold.woff2") format("woff2"),
+    url("ValentineLLWeb-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "ValentineLLWeb";
+  font-weight: 700;
+  font-style: italic;
+  src:
+    url("ValentineLLWeb-BoldItalic.woff2") format("woff2"),
+    url("ValentineLLWeb-BoldItalic.woff") format("woff");
 }

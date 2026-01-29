@@ -1,79 +1,56 @@
 // * * * * * * * * * * * * * * * * * * * * * * * * * * *
 //
-//  sanity.js =>
+//  sanity.ts =>
 //  functions to work with the Sanity database
 //
 // * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-import sanityClient from "@sanity/client";
-// @ts-expect-error - no type definitions available
-import blocksToHtml from "@sanity/block-content-to-html";
-// @ts-expect-error - using lodash submodule import
-import get from "lodash/get.js";
+import { createClient } from "@sanity/client";
+import { toHTML, type PortableTextComponents } from "@portabletext/to-html";
+import type { TypedObject, PortableTextBlock } from "@portabletext/types";
 
-interface PortableTextBlock {
-  _type: string;
-  children?: { text?: string }[];
-}
-
-// const SANITY_PROJECT_ID = import.meta.env.VITE_SANITY_ID
 const SANITY_PROJECT_ID = "4lya2jpj";
 
-export const client = sanityClient({
+export const client = createClient({
   projectId: SANITY_PROJECT_ID,
   dataset: "production",
-  apiVersion: "2022-12-12", // use a UTC date string
+  apiVersion: "2026-01-01", // use a UTC date string
   useCdn: true,
 });
 
-const h = blocksToHtml.h;
+const components: PortableTextComponents = {
+  marks: {
+    link: ({ children, value }) => {
+      const href = value?.href ?? "";
+      const external = href.includes("http");
+      if (external) {
+        return `<a href="${href}" target="_blank" rel="noreferrer">${children}</a>`;
+      }
+      return `<a href="${href}">${children}</a>`;
+    },
+  },
+  block: {
+    normal: ({ children }) => `<p class="normal">${children}</p>`,
+    blockquote: ({ children }) => `<blockquote>${children}</blockquote>`,
+    h2: ({ children }) => `<h2>${children}</h2>`,
+    h3: ({ children }) => `<h3>${children}</h3>`,
+  },
+};
 
-interface BlockProps {
-  mark: { href: string };
-  children: unknown;
-  node: { style?: string };
-}
+export const renderBlockText = (blocks: TypedObject[]) =>
+  toHTML(blocks, { components });
 
-export const renderBlockText = (text: PortableTextBlock[]) =>
-  blocksToHtml({
-    blocks: text,
-    serializers: serializers,
-    projectId: SANITY_PROJECT_ID,
-    dataset: "production",
-  });
-
-export const toPlainText = (blocks: PortableTextBlock[] = []) => {
+export const toPlainText = (blocks: TypedObject[] = []) => {
   return blocks
     .map((block) => {
-      if (block._type !== "block" || !("children" in block)) {
-        return "";
-      }
-      return (block.children as { text?: string }[])
-        .map((child) => child.text)
+      if (block._type !== "block") return "";
+      const children = (block as PortableTextBlock).children;
+      if (!children) return "";
+      return children
+        .map((child) => ("text" in child ? child.text : ""))
         .join("");
     })
     .join("\n\n");
-};
-
-const serializers = {
-  marks: {
-    link: (props: BlockProps) => {
-      const external = get(props, "mark.href", "").includes("http");
-      const linkOptions = external
-        ? { target: "_blank", rel: "noreferrer", href: props.mark.href }
-        : { href: props.mark.href };
-      return h("a", linkOptions, props.children);
-    },
-  },
-  types: {
-    block: (props: BlockProps) => {
-      const style = props.node.style || "normal";
-      if (style === "blockquote") return h("blockquote", {}, props.children);
-      if (style === "h2") return h("h2", {}, props.children);
-      if (style === "h3") return h("h3", {}, props.children);
-      return h("p", { className: style }, props.children);
-    },
-  },
 };
 
 export const loadData = async <T>(
